@@ -6,10 +6,13 @@ import java.io.Serializable;
 //@Table (name = "editorial")
 public class Editorial implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "alta")
     private Boolean alta;
+
 
     public Editorial() {
     }

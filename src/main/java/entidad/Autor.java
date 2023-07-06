@@ -6,9 +6,11 @@ import java.io.Serializable;
 //@Table (name = "autor")
 public class Autor implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "alta")
     private Boolean alta;
 
     public Autor() {

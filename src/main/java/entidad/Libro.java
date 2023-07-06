@@ -4,27 +4,34 @@ package entidad;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
-//@Table(name = "libro")
+@Table(name = "libro")
 public class Libro implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private long isbn;
+    @Column(name = "titulo")
     private String titulo;
+    @Column(name = "anio")
     private Integer anio;
+    @Column(name = "ejemplares")
     private Integer ejemplares;
+    @Column(name = "ejemplaresPrestados")
     private Integer ejemplaresPrestados;
+    @Column(name = "ejemplaresRestantes")
     private Integer ejemplaresRestantes;
+    @Column(name = "alta")
     private Boolean alta;
     @OneToOne
+    @JoinColumn (name = "autor_id")
     private Autor autor;
     @OneToOne
+    @JoinColumn (name = "editorial_id")
     private Editorial editorial;
 
     public Libro() {
     }
 
-    public Libro(long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
-        this.isbn = isbn;
+    public Libro(String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
         this.titulo = titulo;
         this.anio = anio;
         this.ejemplares = ejemplares;

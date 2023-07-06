@@ -1,0 +1,45 @@
+package persistencia;
+
+import entidad.Libro;
+
+import java.util.List;
+
+public class LibroDAO extends DAO<Libro> {
+
+    @Override
+    public void guardar(Libro entidad) {
+        super.guardar(entidad);
+    }
+
+    @Override
+    public void editar(Libro entidad) {
+        super.editar(entidad);
+    }
+
+    @Override
+    public void eliminar(Libro entidad) {
+        super.eliminar(entidad);
+    }
+
+    public Libro buscar(String nombre) {
+        conectar();
+        Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l WHERE l.titulo = :nombre")
+                .setParameter("nombre",nombre).getSingleResult();
+        if (libro!=null){
+            System.out.println(libro);
+        }
+        desconectar();
+        return libro;
+    }
+    public void listartodos() {
+        conectar();
+        //"SELECT u FROM Usuario u where u.nombre LIKE '%Yas%'").getResultList();
+        List<Libro> libros = em.createQuery("SELECT l FROM Libro l")
+                .getResultList();
+        desconectar();
+        for (Libro libro : libros) {
+            System.out.println(libro);
+        }
+    }
+}
+
