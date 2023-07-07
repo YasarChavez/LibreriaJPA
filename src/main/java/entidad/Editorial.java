@@ -2,6 +2,7 @@ package entidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 //@Table (name = "editorial")
 public class Editorial implements Serializable {
@@ -11,7 +12,7 @@ public class Editorial implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "alta")
-    private Boolean alta  = true;
+    private Boolean alta = true;
 
 
     public Editorial() {

@@ -13,29 +13,32 @@ public class LibroService {
     public LibroService() {
         this.DAO = new LibroDAO();
     }
-    public void listarTodos(){
+
+    public void listarTodos() {
         try {
             DAO.listartodos();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
-    public void buscarPorNombre(){
+
+    public void buscarPorNombre() {
         try {
             System.out.println("Ingrese el nombre del libro que desea buscar:");
             String nombre = leer.next();
             DAO.buscarPorNombre(nombre);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("No se encontró el libro");
         }
     }
+
     public void buscarPorISBN() {
         try {
             System.out.println("Ingrese el ISBN del libro que desea buscar:");
-            long isbn  = leer.nextLong();
+            long isbn = leer.nextLong();
             DAO.buscarPorISBN(isbn);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("No se encontrón el libro");
         }
@@ -135,7 +138,6 @@ public class LibroService {
 
         System.out.println("Ingrese id de la editorial:");
         libro.setEditorial(new EditorialService().buscarPorId());
-
         try {
             if (libro.getAutor() != null && libro.getEditorial() != null) {
                 DAO.guardar(libro);
@@ -151,21 +153,22 @@ public class LibroService {
         }
     }
 
-    public void buscarLibroPorAutor(){
+    public void buscarLibroPorAutor() {
         try {
             System.out.println("Ingrese el nombre del autor que desea buscar:");
-            String  nombre = leer.next();
+            String nombre = leer.next();
             DAO.buscarLibroPorAutor(nombre);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    public void buscarLibroPorEditorial(){
+
+    public void buscarLibroPorEditorial() {
         try {
             System.out.println("Ingrese el nombre de la editorial que desea buscar:");
             String nombre = leer.next();
             DAO.buscarLibroPorEditorial(nombre);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }

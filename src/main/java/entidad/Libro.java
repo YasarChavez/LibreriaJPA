@@ -3,11 +3,12 @@ package entidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 @Table(name = "libro")
 public class Libro implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long isbn;
     @Column(name = "titulo")
     private String titulo;
@@ -22,10 +23,10 @@ public class Libro implements Serializable {
     @Column(name = "alta")
     private Boolean alta = true;
     @OneToOne
-    @JoinColumn (name = "autor_id")
+    @JoinColumn(name = "autor_id")
     private Autor autor;
     @OneToOne
-    @JoinColumn (name = "editorial_id")
+    @JoinColumn(name = "editorial_id")
     private Editorial editorial;
 
     public Libro() {

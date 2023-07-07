@@ -13,20 +13,22 @@ public class EditorialService {
     public EditorialService() {
         this.DAO = new EditorialDAO();
     }
-    public void cargarEditorial(){
+
+    public void cargarEditorial() {
         try {
             Editorial editorial = new Editorial();
             System.out.println("Ingrese el nombre de la editorial:");
             editorial.setNombre(leer.next());
             DAO.guardar(editorial);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
     }
-    public void listarEditoriales(){
+
+    public void listarEditoriales() {
         try {
             DAO.listarEditoriales();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
     }

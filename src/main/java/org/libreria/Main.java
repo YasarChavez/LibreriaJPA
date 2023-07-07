@@ -1,7 +1,5 @@
 package org.libreria;
 
-import entidad.Editorial;
-import entidad.Libro;
 import servicio.AutorService;
 import servicio.EditorialService;
 import servicio.LibroService;
@@ -17,7 +15,7 @@ public class Main {
 //        autorService.cargarAutor();
 //        Búsqueda de un Autor por nombre.
 //        autorService.buscarPorNombre();
-        libroService.cargarLibro();
+//        libroService.cargarLibro();
 //        Búsqueda de un libro por Título.
 //        libroService.listarTodos();
 //        libroService.buscarPorNombre();

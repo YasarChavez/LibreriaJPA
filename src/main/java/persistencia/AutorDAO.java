@@ -4,7 +4,7 @@ import entidad.Autor;
 
 import java.util.List;
 
-public class AutorDAO extends DAO<Autor>{
+public class AutorDAO extends DAO<Autor> {
     @Override
     public void guardar(Autor entidad) {
         super.guardar(entidad);
@@ -24,12 +24,12 @@ public class AutorDAO extends DAO<Autor>{
     public void buscarPorNombre(String nombre) {
         conectar();
         List<Autor> autores = em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
-                .setParameter("nombre","%"+nombre+"%").getResultList();
-        if (autores!=null){
+                .setParameter("nombre", "%" + nombre + "%").getResultList();
+        if (autores != null) {
             for (Autor autor : autores) {
                 System.out.println(autor);
             }
-        }else {
+        } else {
             System.out.println("No se encontraron autores con ese nombre");
         }
 //        Autor autor = (Autor) em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
@@ -43,8 +43,8 @@ public class AutorDAO extends DAO<Autor>{
     public Autor buscarPorId(long l) {
         conectar();
         Autor autor = (Autor) em.createQuery("SELECT a FROM Autor a WHERE a.id= :id")
-                .setParameter("id",l).getSingleResult();
-        if (autor!=null){
+                .setParameter("id", l).getSingleResult();
+        if (autor != null) {
             System.out.println(autor);
         }
         desconectar();

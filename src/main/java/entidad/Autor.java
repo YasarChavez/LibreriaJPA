@@ -2,6 +2,7 @@ package entidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 //@Table (name = "autor")
 public class Autor implements Serializable {
