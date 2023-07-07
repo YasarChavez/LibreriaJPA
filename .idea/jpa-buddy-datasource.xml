@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="1da9a29e-4622-4dd6-ba5d-0070e7efeb7b" name="Libreria" url="jdbc:mysql://localhost/Libreria?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.cj.jdbc.Driver" />
+    </data-sources>
+    <data-source-infos>
+      <data-source-info id="1da9a29e-4622-4dd6-ba5d-0070e7efeb7b" persistence-unit-name="LibreriaTestPU" />
+    </data-source-infos>
+  </component>
+</project>

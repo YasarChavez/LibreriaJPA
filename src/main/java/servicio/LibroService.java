@@ -23,7 +23,16 @@ public class LibroService {
         try {
             System.out.println("Ingrese el nombre del libro que desea buscar:");
             String nombre = leer.next();
-            DAO.buscar(nombre);
+            DAO.buscarporNombre(nombre);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    public void buscarPorISBN() {
+        try {
+            System.out.println("Ingrese el ISBN del libro que desea buscar:");
+            long isbn  = leer.nextLong();
+            DAO.buscarPorISBN(isbn);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -40,6 +49,15 @@ public class LibroService {
             DAO.guardar(libro);
         }catch (Exception e){
             e.getMessage();
+        }
+    }
+    public void buscarLibroPorAutor(){
+        try {
+            System.out.println("Ingrese el nombre del autor que desea buscar:");
+            long id = leer.nextLong();
+            DAO.buscarLibroPorAutor(id);
+        }catch (Exception e){
+            System.out.println(e);
         }
     }
 }
