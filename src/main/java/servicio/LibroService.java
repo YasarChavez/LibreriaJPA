@@ -60,4 +60,13 @@ public class LibroService {
             System.out.println(e);
         }
     }
+    public void buscarLibroPorEditorial(){
+        try {
+            System.out.println("Ingrese el id de la editorial que desea buscar:");
+            long id = leer.nextLong();
+            DAO.buscarLibroPorEditorial(id);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }

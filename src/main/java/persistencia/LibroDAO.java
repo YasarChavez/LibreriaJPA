@@ -60,5 +60,14 @@ public class LibroDAO extends DAO<Libro> {
             System.out.println(libro);
         }
     }
+    public void buscarLibroPorEditorial(long idEditorial){
+        conectar();
+        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.editorial.id = :idEditorial")
+                .setParameter("idEditorial",idEditorial).getResultList();
+        desconectar();
+        for (Libro libro : libros) {
+            System.out.println(libro);
+        }
+    }
 }
 

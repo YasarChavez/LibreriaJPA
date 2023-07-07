@@ -1,7 +1,9 @@
 package org.libreria;
 
+import entidad.Editorial;
 import entidad.Libro;
 import servicio.AutorService;
+import servicio.EditorialService;
 import servicio.LibroService;
 
 public class Main {
@@ -9,6 +11,7 @@ public class Main {
         System.out.println("Hello World!");
         LibroService libroService = new LibroService();
         AutorService autorService = new AutorService();
+        EditorialService editorialService = new EditorialService();
 
 
 //        autorService.cargarAutor();
@@ -21,5 +24,9 @@ public class Main {
 //        Búsqueda de un libro por ISBN.
 //        libroService.buscarPorISBN();
 //        libroService.buscarLibroPorAutor();
+//        editorialService.cargarEditorial();
+        editorialService.listarEditoriales();
+        //TODO editar libros para agregar editorial
+        libroService.buscarLibroPorEditorial();
     }
 }
