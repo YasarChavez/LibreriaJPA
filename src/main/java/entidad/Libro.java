@@ -20,7 +20,7 @@ public class Libro implements Serializable {
     @Column(name = "ejemplaresRestantes")
     private Integer ejemplaresRestantes;
     @Column(name = "alta")
-    private Boolean alta;
+    private Boolean alta = true;
     @OneToOne
     @JoinColumn (name = "autor_id")
     private Autor autor;

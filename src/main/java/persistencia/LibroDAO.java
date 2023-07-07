@@ -21,29 +21,34 @@ public class LibroDAO extends DAO<Libro> {
         super.eliminar(entidad);
     }
 
-    public Libro buscarporNombre(String nombre) {
+
+    public Libro buscarPorNombre(String nombre) {
         conectar();
-        Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l WHERE l.titulo= :nombre")
-                .setParameter("nombre",nombre).getSingleResult();
-        if (libro!=null){
-            System.out.println(libro);
-        }
+        Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l WHERE l.titulo LIKE :nombre")
+                .setParameter("nombre", "%" + nombre + "%")
+                .getSingleResult();
         desconectar();
+        if (libro != null) {
+            System.out.println(libro);
+        } else {
+            System.out.println("No se encontró el libro");
+        }
         return libro;
     }
+
 
     public void buscarPorISBN(long isbn) {
         conectar();
         Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l WHERE l.isbn = :isbn")
-                .setParameter("isbn",isbn).getSingleResult();
-        if (libro!=null){
+                .setParameter("isbn", isbn).getSingleResult();
+        if (libro != null) {
             System.out.println(libro);
         }
         desconectar();
     }
+
     public void listartodos() {
         conectar();
-        //"SELECT u FROM Usuario u where u.nombre LIKE '%Yas%'").getResultList();
         List<Libro> libros = em.createQuery("SELECT l FROM Libro l")
                 .getResultList();
         desconectar();
@@ -51,22 +56,32 @@ public class LibroDAO extends DAO<Libro> {
             System.out.println(libro);
         }
     }
-    public void buscarLibroPorAutor(long idAutor){
+
+    public void buscarLibroPorAutor(String nombreAutor) {
         conectar();
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.autor.id = :idAutor")
-                .setParameter("idAutor",idAutor).getResultList();
+        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.autor.nombre LIKE :nombreAutor")
+                .setParameter("nombreAutor", "%" + nombreAutor + "%").getResultList();
         desconectar();
-        for (Libro libro : libros) {
-            System.out.println(libro);
+        if (libros.size() == 0) {
+            System.out.println("No se encontraron libros con ese autor");
+        } else {
+            for (Libro libro : libros) {
+                System.out.println(libro);
+            }
         }
     }
-    public void buscarLibroPorEditorial(long idEditorial){
+
+    public void buscarLibroPorEditorial(String nombreEditorial) {
         conectar();
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.editorial.id = :idEditorial")
-                .setParameter("idEditorial",idEditorial).getResultList();
+        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.editorial.nombre LIKE :nombreEditorial")
+                .setParameter("nombreEditorial", "%" + nombreEditorial + "%").getResultList();
         desconectar();
-        for (Libro libro : libros) {
-            System.out.println(libro);
+        if (libros.size() == 0) {
+            System.out.println("No se encontraron libros con ese editorial");
+        } else {
+            for (Libro libro : libros) {
+                System.out.println(libro);
+            }
         }
     }
 }

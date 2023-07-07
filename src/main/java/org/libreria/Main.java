@@ -17,16 +17,15 @@ public class Main {
 //        autorService.cargarAutor();
 //        Búsqueda de un Autor por nombre.
 //        autorService.buscarPorNombre();
-//        libroService.cargarLibro();
+        libroService.cargarLibro();
 //        Búsqueda de un libro por Título.
-//        libroService.buscarPorNombre();
 //        libroService.listarTodos();
+//        libroService.buscarPorNombre();
 //        Búsqueda de un libro por ISBN.
 //        libroService.buscarPorISBN();
 //        libroService.buscarLibroPorAutor();
 //        editorialService.cargarEditorial();
-        editorialService.listarEditoriales();
-        //TODO editar libros para agregar editorial
-        libroService.buscarLibroPorEditorial();
+//        editorialService.listarEditoriales();
+//        libroService.buscarLibroPorEditorial();
     }
 }

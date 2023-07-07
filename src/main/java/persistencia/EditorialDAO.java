@@ -31,4 +31,11 @@ public class EditorialDAO extends DAO<Editorial> {
         }
         desconectar();
     }
+
+    public Editorial buscarPorId(int id) {
+        conectar();
+        Editorial editorial = em.find(Editorial.class, id);
+        desconectar();
+        return editorial;
+    }
 }

@@ -30,4 +30,10 @@ public class EditorialService {
             e.getMessage();
         }
     }
+
+    public Editorial buscarPorId() {
+        System.out.println("Ingrese el id de la editorial que desea buscar:");
+        int id = leer.nextInt();
+        return DAO.buscarPorId(id);
+    }
 }

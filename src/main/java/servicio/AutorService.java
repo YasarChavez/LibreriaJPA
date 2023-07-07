@@ -33,4 +33,16 @@ public class AutorService {
             System.out.println(e);
         }
     }
+
+    public Autor buscarPorId() {
+        try {
+            System.out.println("Ingrese el id del autor que desea buscar:");
+            long l = leer.nextLong();
+            return DAO.buscarPorId(l);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("No se encontró el autor");
+            return null;
+        }
+    }
 }
