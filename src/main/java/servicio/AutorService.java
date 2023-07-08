@@ -3,6 +3,7 @@ package servicio;
 import entidad.Autor;
 import persistencia.AutorDAO;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class AutorService {
@@ -23,12 +24,12 @@ public class AutorService {
             if (!existe) {
                 DAO.guardar(autor);
                 System.out.println("Autor cargado correctamente");
-            }else {
+            } else {
                 System.out.println("El autor ya existe");
-                System.out.println("No se ha cargado el autor");
+                cargarAutor();
             }
         } catch (Exception e) {
-            System.out.println("Error al cargar el autor " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -51,6 +52,13 @@ public class AutorService {
             System.out.println(e.getMessage());
             System.out.println("No se encontró el autor");
             return null;
+        }
+    }
+    public void listarAutores() {
+        try {
+            DAO.listarAutores();
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

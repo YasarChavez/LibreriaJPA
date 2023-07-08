@@ -3,7 +3,6 @@ package persistencia;
 import entidad.Libro;
 
 import java.util.List;
-import java.util.Objects;
 
 public class LibroDAO extends DAO<Libro> {
 
@@ -97,8 +96,7 @@ public class LibroDAO extends DAO<Libro> {
             if (libro1.getTitulo().equals(libro.getTitulo())
                     && libro1.getAnio().equals(libro.getAnio())
                     && libro1.getAutor().getNombre().equals(libro.getAutor().getNombre())
-                    && libro1.getEditorial().getNombre().equals(libro.getEditorial().getNombre()))
-            {
+                    && libro1.getEditorial().getNombre().equals(libro.getEditorial().getNombre())) {
                 return true;
             }
         }

@@ -1,7 +1,6 @@
 package persistencia;
 
 import entidad.Autor;
-import entidad.Libro;
 
 import java.util.List;
 
@@ -46,13 +45,25 @@ public class AutorDAO extends DAO<Autor> {
         desconectar();
         return autor;
     }
+
+    public void listarAutores() {
+        conectar();
+        List<Autor> autores = em.createQuery("SELECT a FROM Autor a").getResultList();
+        if (autores != null) {
+            for (Autor autor : autores) {
+                System.out.println(autor);
+            }
+        }
+        desconectar();
+    }
+
     public boolean existeAutor(Autor autor) {
         conectar();
         List<Autor> autores = em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
                 .setParameter("nombre", autor.getNombre()).getResultList();
         desconectar();
-        for (Autor autor1 : autores){
-            if (autor1.getNombre().equals(autor.getNombre())){
+        for (Autor autor1 : autores) {
+            if (autor1.getNombre().equals(autor.getNombre())) {
                 return true;
             }
         }

@@ -38,4 +38,26 @@ public class EditorialDAO extends DAO<Editorial> {
         desconectar();
         return editorial;
     }
+
+    public boolean existeEditorial(Editorial editorial) {
+        conectar();
+        List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e")
+                .getResultList();
+        desconectar();
+        for (Editorial e : editoriales) {
+            if (editorial.getNombre().equals(e.getNombre())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void buscarPorNombre(String nombre) {
+        conectar();
+        List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e WHERE e.nombre = '" + nombre + "'")
+                .getResultList();
+        desconectar();
+        for (Editorial e : editoriales) {
+            System.out.println(e);
+        }
+    }
 }

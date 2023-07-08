@@ -3,6 +3,7 @@ package servicio;
 import entidad.Editorial;
 import persistencia.EditorialDAO;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class EditorialService {
@@ -19,9 +20,16 @@ public class EditorialService {
             Editorial editorial = new Editorial();
             System.out.println("Ingrese el nombre de la editorial:");
             editorial.setNombre(leer.next());
-            DAO.guardar(editorial);
+            boolean existe = DAO.existeEditorial(editorial);
+            if (!existe) {
+                DAO.guardar(editorial);
+                System.out.println("Editorial cargada correctamente");
+            } else {
+                System.out.println("La editorial ya existe");
+                cargarEditorial();
+            }
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -34,8 +42,24 @@ public class EditorialService {
     }
 
     public Editorial buscarPorId() {
-        System.out.println("Ingrese el id de la editorial que desea buscar:");
-        int id = leer.nextInt();
-        return DAO.buscarPorId(id);
+        try {
+            System.out.println("Ingrese el id de la editorial que desea buscar:");
+            int id = leer.nextInt();
+            return DAO.buscarPorId(id);
+        }catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
     }
+
+    public void buscarPorNombre() {
+        try {
+            System.out.println("Ingrese el nombre de la editorial que desea buscar:");
+            String nombre = leer.next();
+            DAO.buscarPorNombre(nombre);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
 }
