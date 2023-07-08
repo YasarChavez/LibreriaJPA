@@ -43,36 +43,6 @@ public class LibroService {
             System.out.println("No se encontrón el libro");
         }
     }
-//    public void cargarLibro(){
-//        Libro libro = new Libro();
-//        System.out.println("Ingrese Titulo:");
-//        libro.setTitulo(leer.next());
-//        System.out.println("Ingrese año:");
-//        libro.setAnio(leer.nextInt());
-//        System.out.println("Ingrese ejemplares:");
-//        libro.setEjemplares(leer.nextInt());
-//        System.out.println("Ingrese ejemplares prestados:");
-//        libro.setEjemplaresPrestados(leer.nextInt());
-//        System.out.println("Ingrese ejemplares restantes:");
-//        libro.setEjemplaresRestantes(leer.nextInt());
-//        System.out.println("Ingrese id del autor:");
-//        libro.setAutor(new AutorService().buscarPorId());
-//        System.out.println("Ingrese id de la editorial:");
-//        libro.setEditorial(new EditorialService().buscarPorId());
-//        try {
-//            if (libro.getAutor()!=null && libro.getEditorial()!=null){
-//                DAO.guardar(libro);
-//                System.out.println("Se cargo el libro correctamente");
-//            }else {
-//                System.out.println("No se pudo cargar el libro");
-//                System.out.println("Por favor verifique los datos");
-//                cargarLibro();
-//            }
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//            System.out.println("No  se pudo cargar el libro");
-//        }
-//    }
 
     public void cargarLibro() {
         Libro libro = new Libro();
@@ -138,13 +108,16 @@ public class LibroService {
 
         System.out.println("Ingrese id de la editorial:");
         libro.setEditorial(new EditorialService().buscarPorId());
+
+        boolean existe = DAO.existeLibro(libro);
         try {
-            if (libro.getAutor() != null && libro.getEditorial() != null) {
+            if (libro.getAutor() != null && libro.getEditorial() != null && !existe) {
                 DAO.guardar(libro);
                 System.out.println("Se cargó el libro correctamente.");
             } else {
                 System.out.println("No se pudo cargar el libro.");
                 System.out.println("Por favor, verifique los datos e intente nuevamente.");
+                leer.nextLine(); // Limpiar el buffer del scanner
                 cargarLibro();
             }
         } catch (Exception e) {

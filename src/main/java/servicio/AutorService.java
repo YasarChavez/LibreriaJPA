@@ -17,11 +17,18 @@ public class AutorService {
         Autor autor = new Autor();
         System.out.println("Ingrese el nombre del autor:");
         autor.setNombre(leer.next());
+
+        boolean existe = DAO.existeAutor(autor);
         try {
-            DAO.guardar(autor);
-            System.out.println("Autor cargado correctamente");
+            if (!existe) {
+                DAO.guardar(autor);
+                System.out.println("Autor cargado correctamente");
+            }else {
+                System.out.println("El autor ya existe");
+                System.out.println("No se ha cargado el autor");
+            }
         } catch (Exception e) {
-            System.out.println("Error al cargar el autor "+ e.getMessage());
+            System.out.println("Error al cargar el autor " + e.getMessage());
         }
     }
 

@@ -13,6 +13,12 @@
             <property name="javax.persistence.jdbc.password" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 
+            <!-- Agrega esta propiedad para no mostrar las consultas SQL en la consola -->
+            <property name="hibernate.show_sql" value="false"/>
+
+            <!-- Ajuste de nivel de registro de Hibernate -->
+            <property name="javax.persistence.logging.level" value="OFF"/>
+
             <!-- "create" cuando no existen las tablas -->
             <!-- "none" cuando ya existen las tablas -->
             <property name="javax.persistence.schema-generation.database.action" value="none"/>

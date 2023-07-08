@@ -12,7 +12,7 @@ public class Main {
         EditorialService editorialService = new EditorialService();
 
 
-//        autorService.cargarAutor();
+        autorService.cargarAutor();
 //        Búsqueda de un Autor por nombre.
 //        autorService.buscarPorNombre();
 //        libroService.cargarLibro();
@@ -25,5 +25,8 @@ public class Main {
 //        editorialService.cargarEditorial();
 //        editorialService.listarEditoriales();
 //        libroService.buscarLibroPorEditorial();
+//        editorialService.buscarPorId();
+//        System.out.println(editorialService.buscarPorId());
+
     }
 }
