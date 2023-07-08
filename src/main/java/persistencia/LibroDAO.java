@@ -22,18 +22,18 @@ public class LibroDAO extends DAO<Libro> {
     }
 
 
-    public Libro buscarPorNombre(String nombre) {
+    public void buscarPorNombre(String nombre) {
         conectar();
-        Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l WHERE l.titulo LIKE :nombre")
-                .setParameter("nombre", "%" + nombre + "%")
-                .getSingleResult();
+       List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.titulo LIKE :nombre")
+               .setParameter("nombre", "%" + nombre + "%").getResultList();
         desconectar();
-        if (libro != null) {
-            System.out.println(libro);
+        if (libros != null) {
+            for (Libro libro : libros) {
+                System.out.println(libro);
+            }
         } else {
-            System.out.println("No se encontró el libro");
+            System.out.println("No se encontraron libros");
         }
-        return libro;
     }
 
 

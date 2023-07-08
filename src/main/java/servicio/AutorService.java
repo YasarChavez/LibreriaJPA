@@ -19,8 +19,9 @@ public class AutorService {
         autor.setNombre(leer.next());
         try {
             DAO.guardar(autor);
+            System.out.println("Autor cargado correctamente");
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println("Error al cargar el autor "+ e.getMessage());
         }
     }
 
@@ -30,7 +31,7 @@ public class AutorService {
             String nombre = leer.next();
             DAO.buscarPorNombre(nombre);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
