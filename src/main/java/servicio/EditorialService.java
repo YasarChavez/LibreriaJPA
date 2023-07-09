@@ -3,7 +3,6 @@ package servicio;
 import entidad.Editorial;
 import persistencia.EditorialDAO;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class EditorialService {
@@ -46,7 +45,7 @@ public class EditorialService {
             System.out.println("Ingrese el id de la editorial que desea buscar:");
             int id = leer.nextInt();
             return DAO.buscarPorId(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return null;
         }

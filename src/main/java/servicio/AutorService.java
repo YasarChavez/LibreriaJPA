@@ -3,7 +3,6 @@ package servicio;
 import entidad.Autor;
 import persistencia.AutorDAO;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class AutorService {
@@ -54,10 +53,11 @@ public class AutorService {
             return null;
         }
     }
+
     public void listarAutores() {
         try {
             DAO.listarAutores();
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

@@ -117,6 +117,7 @@ public class LibroService {
             } else {
                 System.out.println("No se pudo cargar el libro.");
                 System.out.println("Por favor, verifique los datos e intente nuevamente.");
+                System.out.println("Es posible que el libro ya exista.");
                 leer.nextLine(); // Limpiar el buffer del scanner
                 cargarLibro();
             }

@@ -24,15 +24,15 @@ public class AutorDAO extends DAO<Autor> {
     public void buscarPorNombre(String nombre) {
         conectar();
         List<Autor> autores = em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
-                .setParameter("nombre", "%" + nombre + "%").getResultList();
-        if (autores != null) {
+                .setParameter("nombre", nombre).getResultList();
+        desconectar();
+        if (autores.size() > 0) {
             for (Autor autor : autores) {
                 System.out.println(autor);
             }
         } else {
             System.out.println("No se encontraron autores con ese nombre");
         }
-        desconectar();
     }
 
     public Autor buscarPorId(long l) {
@@ -59,14 +59,10 @@ public class AutorDAO extends DAO<Autor> {
 
     public boolean existeAutor(Autor autor) {
         conectar();
-        List<Autor> autores = em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
-                .setParameter("nombre", autor.getNombre()).getResultList();
+        Autor autorExiste = (Autor) em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
+                .setParameter("nombre", autor.getNombre())
+                .getSingleResult();
         desconectar();
-        for (Autor autor1 : autores) {
-            if (autor1.getNombre().equals(autor.getNombre())) {
-                return true;
-            }
-        }
-        return false;
+        return autorExiste != null;
     }
 }

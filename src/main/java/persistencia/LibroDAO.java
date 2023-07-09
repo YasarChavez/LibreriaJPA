@@ -87,20 +87,18 @@ public class LibroDAO extends DAO<Libro> {
 
     public boolean existeLibro(Libro libro) {
         conectar();
-        //listar todos
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l")
-                .getResultList();
+        libro.getTitulo();
+        libro.getAnio();
+        libro.getEditorial().getNombre();
+        libro.getAutor().getNombre();
+        Libro libroExiste = (Libro) em.createQuery(
+                        "SELECT l FROM Libro l WHERE l.titulo = :titulo AND l.anio = :anio AND l.editorial.nombre = :editorial AND l.autor.nombre = :autor")
+                .setParameter("titulo", libro.getTitulo())
+                .setParameter("anio", libro.getAnio())
+                .setParameter("editorial", libro.getEditorial().getNombre())
+                .setParameter("autor", libro.getAutor().getNombre()).getSingleResult();
         desconectar();
-        //Comparar si existe
-        for (Libro libro1 : libros) {
-            if (libro1.getTitulo().equals(libro.getTitulo())
-                    && libro1.getAnio().equals(libro.getAnio())
-                    && libro1.getAutor().getNombre().equals(libro.getAutor().getNombre())
-                    && libro1.getEditorial().getNombre().equals(libro.getEditorial().getNombre())) {
-                return true;
-            }
-        }
-        return false;
+        return libroExiste != null;
     }
 }
 

@@ -14,6 +14,7 @@ public class Menu {
         LibroService libroService = new LibroService();
         int opcion = 0;
         do {
+            System.out.println();
             System.out.println("1. Agregar Autor");
             System.out.println("2. Agregar Editorial");
             System.out.println("3. Agregar Libro");
@@ -29,7 +30,12 @@ public class Menu {
             System.out.println("13. Buscar Libro Por Editorial");
             System.out.println("14. Listar Libros");
             System.out.println("15. Salir");
-            opcion = leer.nextInt();
+            try {
+                opcion = leer.nextInt();
+            }catch (Exception e){
+                System.out.println("Error: "+e.fillInStackTrace());
+                leer.next();
+            }
             switch (opcion) {
                 case 1:
                     autorService.cargarAutor();
@@ -74,7 +80,7 @@ public class Menu {
                     libroService.listarTodos();
                     break;
                 case 15:
-                    System.exit(0);
+                    System.out.println("Saliendo del programa");
                     break;
                 default:
                     System.out.println("Opcion no valida");

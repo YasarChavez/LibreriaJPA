@@ -28,6 +28,8 @@ public class EditorialDAO extends DAO<Editorial> {
             for (Editorial editorial : editoriales) {
                 System.out.println(editorial);
             }
+        }else {
+            System.out.println("No se encontraron resultados");
         }
         desconectar();
     }
@@ -35,29 +37,37 @@ public class EditorialDAO extends DAO<Editorial> {
     public Editorial buscarPorId(int id) {
         conectar();
         Editorial editorial = em.find(Editorial.class, id);
+        if (editorial != null) {
+            System.out.println(editorial);
+        }else {
+            System.out.println("No se encontro la editorial");
+        }
         desconectar();
         return editorial;
     }
 
     public boolean existeEditorial(Editorial editorial) {
         conectar();
-        List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e")
-                .getResultList();
+        Editorial editorialExiste = (Editorial) em.createQuery(
+                        "SELECT e FROM Editorial e WHERE e.nombre LIKE :nombre")
+                .setParameter("nombre", editorial.getNombre())
+                .getSingleResult();
         desconectar();
-        for (Editorial e : editoriales) {
-            if (editorial.getNombre().equals(e.getNombre())) {
-                return true;
-            }
-        }
-        return false;
+        return editorialExiste != null;
     }
+
     public void buscarPorNombre(String nombre) {
         conectar();
-        List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e WHERE e.nombre = '" + nombre + "'")
+        List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e WHERE e.nombre = :nombre")
+                .setParameter("nombre", nombre)
                 .getResultList();
         desconectar();
-        for (Editorial e : editoriales) {
-            System.out.println(e);
+        if (editoriales.size()>0){
+            for (Editorial e : editoriales) {
+                System.out.println(e);
+            }
+        }else{
+            System.out.println("No se encontraron resultados");
         }
     }
 }
