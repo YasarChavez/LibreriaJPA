@@ -32,7 +32,7 @@ public class AutorService {
         }
     }
 
-    public void buscarPorNombre() {
+    public void buscarAutorPorNombre() {
         try {
             System.out.println("Ingrese el nombre del autor que desea buscar:");
             String nombre = leer.next();
@@ -42,7 +42,7 @@ public class AutorService {
         }
     }
 
-    public Autor buscarPorId() {
+    public Autor buscarAutorPorId() {
         try {
             System.out.println("Ingrese el id del autor que desea buscar:");
             long l = leer.nextLong();

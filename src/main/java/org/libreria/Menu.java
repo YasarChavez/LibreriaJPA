@@ -47,28 +47,28 @@ public class Menu {
                     libroService.cargarLibro();
                     break;
                 case 4:
-                    autorService.buscarPorNombre();
+                    autorService.buscarAutorPorNombre();
                     break;
                 case 5:
-                    autorService.buscarPorId();
+                    autorService.buscarAutorPorId();
                     break;
                 case 6:
                     autorService.listarAutores();
                     break;
                 case 7:
-                    editorialService.buscarPorNombre();
+                    editorialService.buscarEditorialPorNombre();
                     break;
                 case 8:
-                    editorialService.buscarPorId();
+                    editorialService.buscarEditorialPorId();
                     break;
                 case 9:
                     editorialService.listarEditoriales();
                     break;
                 case 10:
-                    libroService.buscarPorNombre();
+                    libroService.buscarLibroPorNombre();
                     break;
                 case 11:
-                    libroService.buscarPorISBN();
+                    libroService.buscarLibroPorISBN();
                     break;
                 case 12:
                     libroService.buscarLibroPorAutor();
@@ -77,7 +77,7 @@ public class Menu {
                     libroService.buscarLibroPorEditorial();
                     break;
                 case 14:
-                    libroService.listarTodos();
+                    libroService.listarLibros();
                     break;
                 case 15:
                     System.out.println("Saliendo del programa");
@@ -86,8 +86,6 @@ public class Menu {
                     System.out.println("Opcion no valida");
                     break;
             }
-
-
         } while (opcion != 15);
     }
 }

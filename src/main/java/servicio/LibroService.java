@@ -14,7 +14,7 @@ public class LibroService {
         this.DAO = new LibroDAO();
     }
 
-    public void listarTodos() {
+    public void listarLibros() {
         try {
             DAO.listartodos();
         } catch (Exception e) {
@@ -22,7 +22,7 @@ public class LibroService {
         }
     }
 
-    public void buscarPorNombre() {
+    public void buscarLibroPorNombre() {
         try {
             System.out.println("Ingrese el nombre del libro que desea buscar:");
             String nombre = leer.next();
@@ -33,7 +33,7 @@ public class LibroService {
         }
     }
 
-    public void buscarPorISBN() {
+    public void buscarLibroPorISBN() {
         try {
             System.out.println("Ingrese el ISBN del libro que desea buscar:");
             long isbn = leer.nextLong();
@@ -104,10 +104,10 @@ public class LibroService {
         libro.setEjemplaresRestantes(ejemplaresRestantes);
 
         System.out.println("Ingrese id del autor:");
-        libro.setAutor(new AutorService().buscarPorId());
+        libro.setAutor(new AutorService().buscarAutorPorId());
 
         System.out.println("Ingrese id de la editorial:");
-        libro.setEditorial(new EditorialService().buscarPorId());
+        libro.setEditorial(new EditorialService().buscarEditorialPorId());
 
         boolean existe = DAO.existeLibro(libro);
         try {

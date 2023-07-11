@@ -40,7 +40,7 @@ public class EditorialService {
         }
     }
 
-    public Editorial buscarPorId() {
+    public Editorial buscarEditorialPorId() {
         try {
             System.out.println("Ingrese el id de la editorial que desea buscar:");
             int id = leer.nextInt();
@@ -51,7 +51,7 @@ public class EditorialService {
         }
     }
 
-    public void buscarPorNombre() {
+    public void buscarEditorialPorNombre() {
         try {
             System.out.println("Ingrese el nombre de la editorial que desea buscar:");
             String nombre = leer.next();
