@@ -145,4 +145,14 @@ public class LibroService {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    public void altaBajaLibroPorISBN() {
+        try {
+            System.out.println("Ingrese el ISBN del libro que desea dar de baja o alta");
+            long isbn = leer.nextLong();
+            DAO.altaBajaLibroPorISBN(isbn);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }

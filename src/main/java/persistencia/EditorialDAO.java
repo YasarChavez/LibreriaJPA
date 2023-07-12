@@ -76,12 +76,18 @@ public class EditorialDAO extends DAO<Editorial> {
         }
     }
 
-    public void eliminarEditorial(Integer id) {
+    public void altaBajaEditorial(Integer id) {
         conectar();
         Editorial editorial = em.find(Editorial.class, id);
         if (editorial != null) {
+            if (editorial.getAlta()){
+                editorial.setAlta(false);
+                System.out.println("Se dio de baja la Editorial");
+            }else {
+                editorial.setAlta(true);
+                System.out.println("Se dio de alta la Editorial");
+            }
             em.getTransaction().begin();
-            editorial.setAlta(false);
             em.merge(editorial);
             em.getTransaction().commit();
         }else {

@@ -100,5 +100,25 @@ public class LibroDAO extends DAO<Libro> {
         desconectar();
         return libroExiste != null;
     }
+
+    public void altaBajaLibroPorISBN(long isbn) {
+        conectar();
+        Libro libro = em.find(Libro.class, isbn);
+        if (libro != null) {
+            if (libro.getAlta()) {
+                libro.setAlta(false);
+                System.out.println("Libro dado de baja");
+            }else {
+                libro.setAlta(true);
+                System.out.println("Libro dado de alta");
+            }
+            em.getTransaction().begin();
+            em.merge(libro);
+            em.getTransaction().commit();
+        } else {
+            System.out.println("No se encontro el libro");
+        }
+        desconectar();
+    }
 }
 

@@ -86,10 +86,10 @@ public class Menu {
                     autorService.altaBajaAutorPorId();
                     break;
                 case 16:
-                    editorialService.eliminarEditorialPorId();
+                    editorialService.altaBajaEditorialPorId();
                     break;
                 case 17:
-//                    libroService.eliminarLibroPorISBN();
+                    libroService.altaBajaLibroPorISBN();
                     break;
                 case 18:
                     System.out.println("Saliendo del programa");

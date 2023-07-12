@@ -61,11 +61,11 @@ public class EditorialService {
         }
     }
 
-    public void eliminarEditorialPorId() {
+    public void altaBajaEditorialPorId() {
         try {
             System.out.println("Ingrese el id de la editorial que desea eliminar:");
             Integer id = leer.nextInt();
-            DAO.eliminarEditorial(id);
+            DAO.altaBajaEditorial(id);
         }catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }

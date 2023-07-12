@@ -51,7 +51,9 @@ public class AutorDAO extends DAO<Autor> {
         List<Autor> autores = em.createQuery("SELECT a FROM Autor a").getResultList();
         if (autores != null) {
             for (Autor autor : autores) {
-                System.out.println(autor);
+                if (autor.getAlta()==true){
+                    System.out.println(autor);
+                }
             }
         }
         desconectar();
