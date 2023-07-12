@@ -48,10 +48,15 @@ public class EditorialDAO extends DAO<Editorial> {
 
     public boolean existeEditorial(Editorial editorial) {
         conectar();
-        Editorial editorialExiste = (Editorial) em.createQuery(
-                        "SELECT e FROM Editorial e WHERE e.nombre LIKE :nombre")
-                .setParameter("nombre", editorial.getNombre())
-                .getSingleResult();
+        Editorial editorialExiste;
+        try {
+            editorialExiste = (Editorial) em.createQuery(
+                            "SELECT e FROM Editorial e WHERE e.nombre LIKE :nombre")
+                    .setParameter("nombre", editorial.getNombre())
+                    .getSingleResult();
+        }catch (Exception e){
+            return false;
+        }
         desconectar();
         return editorialExiste != null;
     }
@@ -69,5 +74,19 @@ public class EditorialDAO extends DAO<Editorial> {
         }else{
             System.out.println("No se encontraron resultados");
         }
+    }
+
+    public void eliminarEditorial(Integer id) {
+        conectar();
+        Editorial editorial = em.find(Editorial.class, id);
+        if (editorial != null) {
+            em.getTransaction().begin();
+            editorial.setAlta(false);
+            em.merge(editorial);
+            em.getTransaction().commit();
+        }else {
+            System.out.println("No se encontro la editorial");
+        }
+        desconectar();
     }
 }

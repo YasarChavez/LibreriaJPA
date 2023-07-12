@@ -59,10 +59,36 @@ public class AutorDAO extends DAO<Autor> {
 
     public boolean existeAutor(Autor autor) {
         conectar();
-        Autor autorExiste = (Autor) em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
-                .setParameter("nombre", autor.getNombre())
-                .getSingleResult();
+        Autor autorExiste;
+        try {
+            autorExiste = (Autor) em.createQuery("SELECT a FROM Autor a WHERE a.nombre= :nombre")
+                    .setParameter("nombre", autor.getNombre())
+                    .getSingleResult();
+        } catch (Exception e) {
+            return false;
+        }
         desconectar();
         return autorExiste != null;
     }
+
+    public void altaBajaAutor(Integer id) {
+        conectar();
+        Autor autor = em.find(Autor.class, id);
+        if (autor != null) {
+            if (autor.getAlta()) {
+                autor.setAlta(false);
+                System.out.println("Autor dado de baja");
+            }else {
+                autor.setAlta(true);
+                System.out.println("Autor dado de alta");
+            }
+            em.getTransaction().begin();
+            em.merge(autor);
+            em.getTransaction().commit();
+        }else {
+            System.out.println("No se encontro el autor");
+        }
+        desconectar();
+    }
+
 }

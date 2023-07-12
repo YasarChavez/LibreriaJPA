@@ -29,11 +29,14 @@ public class Menu {
             System.out.println("12. Buscar Libro Por Autor");
             System.out.println("13. Buscar Libro Por Editorial");
             System.out.println("14. Listar Libros");
-            System.out.println("15. Salir");
+            System.out.println("15. Autor Alta/Baja");
+            System.out.println("16. Editorial Alta/Baja");
+            System.out.println("17. Libro Alta/Baja");
+            System.out.println("18. Salir");
             try {
                 opcion = leer.nextInt();
-            }catch (Exception e){
-                System.out.println("Error: "+e.fillInStackTrace());
+            } catch (Exception e) {
+                System.out.println("Error: " + e.fillInStackTrace());
                 leer.next();
             }
             switch (opcion) {
@@ -80,12 +83,21 @@ public class Menu {
                     libroService.listarLibros();
                     break;
                 case 15:
+                    autorService.altaBajaAutorPorId();
+                    break;
+                case 16:
+                    editorialService.eliminarEditorialPorId();
+                    break;
+                case 17:
+//                    libroService.eliminarLibroPorISBN();
+                    break;
+                case 18:
                     System.out.println("Saliendo del programa");
                     break;
                 default:
                     System.out.println("Opcion no valida");
                     break;
             }
-        } while (opcion != 15);
+        } while (opcion != 18);
     }
 }

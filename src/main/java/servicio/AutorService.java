@@ -61,4 +61,14 @@ public class AutorService {
             System.out.println(e.getMessage());
         }
     }
+
+    public void altaBajaAutorPorId() {
+        try {
+            System.out.println("Ingrese el id del autor que desea dar de Alta/Baja:");
+            Integer l = leer.nextInt();
+            DAO.altaBajaAutor(l);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

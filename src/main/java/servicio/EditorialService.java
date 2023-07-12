@@ -61,4 +61,13 @@ public class EditorialService {
         }
     }
 
+    public void eliminarEditorialPorId() {
+        try {
+            System.out.println("Ingrese el id de la editorial que desea eliminar:");
+            Integer id = leer.nextInt();
+            DAO.eliminarEditorial(id);
+        }catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
