@@ -63,17 +63,23 @@ public class EditorialDAO extends DAO<Editorial> {
 
     public void buscarPorNombre(String nombre) {
         conectar();
-        List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e WHERE e.nombre = :nombre")
-                .setParameter("nombre", nombre)
-                .getResultList();
-        desconectar();
-        if (editoriales.size()>0){
-            for (Editorial e : editoriales) {
-                System.out.println(e);
+        List<Editorial> editoriales;
+        try {
+            editoriales = em.createQuery("SELECT e FROM Editorial e WHERE e.nombre LIKE :nombre")
+                    .setParameter("nombre", nombre)
+                    .getResultList();
+            if (editoriales.size()>0){
+                for (Editorial e : editoriales) {
+                    System.out.println(e);
+                }
+            }else{
+                System.out.println("No se encontraron resultados");
             }
-        }else{
+        }catch (Exception e){
             System.out.println("No se encontraron resultados");
+            return;
         }
+        desconectar();
     }
 
     public void altaBajaEditorial(Integer id) {

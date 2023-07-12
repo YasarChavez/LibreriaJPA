@@ -91,12 +91,17 @@ public class LibroDAO extends DAO<Libro> {
         libro.getAnio();
         libro.getEditorial().getNombre();
         libro.getAutor().getNombre();
-        Libro libroExiste = (Libro) em.createQuery(
-                        "SELECT l FROM Libro l WHERE l.titulo = :titulo AND l.anio = :anio AND l.editorial.nombre = :editorial AND l.autor.nombre = :autor")
-                .setParameter("titulo", libro.getTitulo())
-                .setParameter("anio", libro.getAnio())
-                .setParameter("editorial", libro.getEditorial().getNombre())
-                .setParameter("autor", libro.getAutor().getNombre()).getSingleResult();
+        Libro libroExiste;
+        try {
+            libroExiste = (Libro) em.createQuery(
+                            "SELECT l FROM Libro l WHERE l.titulo = :titulo AND l.anio = :anio AND l.editorial.nombre = :editorial AND l.autor.nombre = :autor")
+                    .setParameter("titulo", libro.getTitulo())
+                    .setParameter("anio", libro.getAnio())
+                    .setParameter("editorial", libro.getEditorial().getNombre())
+                    .setParameter("autor", libro.getAutor().getNombre()).getSingleResult();
+        }catch (Exception e) {
+            libroExiste = null;
+        }
         desconectar();
         return libroExiste != null;
     }
