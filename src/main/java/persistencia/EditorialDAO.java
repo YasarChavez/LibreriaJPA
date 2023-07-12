@@ -36,11 +36,17 @@ public class EditorialDAO extends DAO<Editorial> {
 
     public Editorial buscarPorId(int id) {
         conectar();
-        Editorial editorial = em.find(Editorial.class, id);
-        if (editorial != null) {
-            System.out.println(editorial);
-        }else {
+        Editorial editorial;
+        try {
+            editorial = em.find(Editorial.class, id);
+            if (editorial != null) {
+                System.out.println(editorial);
+            }else {
+                System.out.println("No se encontro la editorial");
+            }
+        }catch (Exception e){
             System.out.println("No se encontro la editorial");
+            return null;
         }
         desconectar();
         return editorial;

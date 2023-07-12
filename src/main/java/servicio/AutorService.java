@@ -45,7 +45,7 @@ public class AutorService {
     public Autor buscarAutorPorId() {
         try {
             System.out.println("Ingrese el id del autor que desea buscar:");
-            long l = leer.nextLong();
+            int l = leer.nextInt();
             return DAO.buscarPorId(l);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -67,6 +67,16 @@ public class AutorService {
             System.out.println("Ingrese el id del autor que desea dar de Alta/Baja:");
             Integer l = leer.nextInt();
             DAO.altaBajaAutor(l);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void eliminarAutorPorId() {
+        try {
+            System.out.println("Ingrese el id del autor que desea eliminar:");
+            Integer l = leer.nextInt();
+            DAO.eliminarAutor(l);
+            System.out.println("Se elimino el autor");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

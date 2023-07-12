@@ -35,12 +35,19 @@ public class AutorDAO extends DAO<Autor> {
         }
     }
 
-    public Autor buscarPorId(long l) {
+    public Autor buscarPorId(int l) {
         conectar();
-        Autor autor = (Autor) em.createQuery("SELECT a FROM Autor a WHERE a.id= :id")
-                .setParameter("id", l).getSingleResult();
-        if (autor != null) {
-            System.out.println(autor);
+        Autor autor;
+        try {
+            autor = em.find(Autor.class, l);
+            if (autor != null) {
+                System.out.println(autor);
+            }else {
+                System.out.println("No  se encontro el autor");
+            }
+        }catch (Exception e){
+            System.out.println("Error: "+ e.getMessage());
+            return null;
         }
         desconectar();
         return autor;
@@ -86,6 +93,18 @@ public class AutorDAO extends DAO<Autor> {
             }
             em.getTransaction().begin();
             em.merge(autor);
+            em.getTransaction().commit();
+        }else {
+            System.out.println("No se encontro el autor");
+        }
+        desconectar();
+    }
+    public void eliminarAutor(Integer id) {
+        conectar();
+        Autor autor = em.find(Autor.class, id);
+        if (autor != null) {
+            em.getTransaction().begin();
+            em.remove(autor);
             em.getTransaction().commit();
         }else {
             System.out.println("No se encontro el autor");

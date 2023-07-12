@@ -39,10 +39,16 @@ public class LibroDAO extends DAO<Libro> {
 
     public void buscarPorISBN(long isbn) {
         conectar();
-        Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l WHERE l.isbn = :isbn")
-                .setParameter("isbn", isbn).getSingleResult();
-        if (libro != null) {
-            System.out.println(libro);
+        Libro libro;
+        try {
+            libro = em.find(Libro.class,isbn);
+            if (libro != null) {
+                System.out.println(libro);
+            }else {
+                System.out.println("No se encontro el libro");
+            }
+        }catch (Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
         desconectar();
     }
