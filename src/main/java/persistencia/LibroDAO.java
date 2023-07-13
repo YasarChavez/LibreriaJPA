@@ -37,7 +37,7 @@ public class LibroDAO extends DAO<Libro> {
     }
 
 
-    public void buscarPorISBN(long isbn) {
+    public Libro buscarPorISBN(long isbn) {
         conectar();
         Libro libro;
         try {
@@ -49,8 +49,10 @@ public class LibroDAO extends DAO<Libro> {
             }
         }catch (Exception e){
             System.out.println("Error: "+e.getMessage());
+            return null;
         }
         desconectar();
+        return libro;
     }
 
     public void listartodos() {
@@ -131,5 +133,6 @@ public class LibroDAO extends DAO<Libro> {
         }
         desconectar();
     }
+
 }
 

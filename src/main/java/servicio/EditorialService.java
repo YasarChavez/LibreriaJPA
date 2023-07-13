@@ -1,5 +1,6 @@
 package servicio;
 
+import entidad.Autor;
 import entidad.Editorial;
 import persistencia.EditorialDAO;
 
@@ -58,6 +59,28 @@ public class EditorialService {
             DAO.buscarPorNombre(nombre);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+        }
+    }
+    public void modificarEditorialPorId() {
+        try {
+            System.out.println("Ingrese el id de la editorial que desea modificar:");
+            int l = leer.nextInt();
+            Editorial editorial = DAO.buscarPorId(l);
+            if (editorial != null) {
+                System.out.println("Ingrese el nuevo nombre de la editorial:");
+                editorial.setNombre(leer.next());
+                if (!DAO.existeEditorial(editorial)){
+                    DAO.editar(editorial);
+                    System.out.println("Editorial modificada correctamente");
+                }else {
+                    System.out.println("La editorial ya existe");
+                    modificarEditorialPorId();
+                }
+            }else {
+                modificarEditorialPorId();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

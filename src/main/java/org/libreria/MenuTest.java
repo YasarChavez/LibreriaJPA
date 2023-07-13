@@ -6,7 +6,7 @@ import servicio.LibroService;
 
 import java.util.Scanner;
 
-public class Menu {
+public class MenuTest {
     public static void menu() {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
         AutorService autorService = new AutorService();
@@ -194,4 +194,5 @@ public class Menu {
             }
         } while (opcion != 0);
     }
+
 }

@@ -2,6 +2,7 @@ package servicio;
 
 import entidad.Autor;
 import persistencia.AutorDAO;
+import persistencia.DAO;
 
 import java.util.Scanner;
 
@@ -32,13 +33,14 @@ public class AutorService {
         }
     }
 
-    public void buscarAutorPorNombre() {
+    public Autor buscarAutorPorNombre() {
         try {
             System.out.println("Ingrese el nombre del autor que desea buscar:");
             String nombre = leer.next();
-            DAO.buscarPorNombre(nombre);
+            return DAO.buscarPorNombre(nombre);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -61,6 +63,28 @@ public class AutorService {
             System.out.println(e.getMessage());
         }
     }
+    public void modificarAutorPorId() {
+        try {
+            System.out.println("Ingrese el id del autor que desea modificar:");
+            int l = leer.nextInt();
+            Autor autor = DAO.buscarPorId(l);
+            if (autor != null) {
+                System.out.println("Ingrese el nuevo nombre del autor:");
+                autor.setNombre(leer.next());
+                if (!DAO.existeAutor(autor)){
+                    DAO.editar(autor);
+                    System.out.println("Autor modificado correctamente");
+                }else {
+                    System.out.println("El autor ya existe");
+                    modificarAutorPorId();
+                }
+            }else {
+                modificarAutorPorId();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void altaBajaAutorPorId() {
         try {
@@ -71,14 +95,14 @@ public class AutorService {
             System.out.println(e.getMessage());
         }
     }
-    public void eliminarAutorPorId() {
-        try {
-            System.out.println("Ingrese el id del autor que desea eliminar:");
-            Integer l = leer.nextInt();
-            DAO.eliminarAutor(l);
-            System.out.println("Se elimino el autor");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void eliminarAutorPorId() {
+//        try {
+//            System.out.println("Ingrese el id del autor que desea eliminar:");
+//            Integer l = leer.nextInt();
+//            DAO.eliminarAutor(l);
+//            System.out.println("Se elimino el autor");
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 }

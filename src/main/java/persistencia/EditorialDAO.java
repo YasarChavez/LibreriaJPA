@@ -82,7 +82,7 @@ public class EditorialDAO extends DAO<Editorial> {
                 System.out.println("No se encontraron resultados");
             }
         }catch (Exception e){
-            System.out.println("No se encontraron resultados");
+            System.out.println("Error en la busqueda: "+ e.getMessage());
             return;
         }
         desconectar();
