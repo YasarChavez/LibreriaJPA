@@ -21,7 +21,7 @@
 
             <!-- "create" cuando no existen las tablas -->
             <!-- "none" cuando ya existen las tablas -->
-            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <property name="javax.persistence.schema-generation.database.action" value="update"/>
         </properties>
     </persistence-unit>
 

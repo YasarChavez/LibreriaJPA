@@ -20,6 +20,13 @@ public class Prestamo implements Serializable {
     public Prestamo() {
     }
 
+    public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, Libro libro, Cliente cliente) {
+        this.fechaPrestamo = fechaPrestamo;
+        this.fechaDevolucion = fechaDevolucion;
+        this.libro = libro;
+        this.cliente = cliente;
+    }
+
     public int getId() {
         return id;
     }
