@@ -28,7 +28,7 @@ public class EditorialDAO extends DAO<Editorial> {
             for (Editorial editorial : editoriales) {
                 System.out.println(editorial);
             }
-        }else {
+        } else {
             System.out.println("No se encontraron resultados");
         }
         desconectar();
@@ -41,10 +41,10 @@ public class EditorialDAO extends DAO<Editorial> {
             editorial = em.find(Editorial.class, id);
             if (editorial != null) {
                 System.out.println(editorial);
-            }else {
+            } else {
                 System.out.println("No se encontro la editorial");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("No se encontro la editorial");
             return null;
         }
@@ -60,7 +60,7 @@ public class EditorialDAO extends DAO<Editorial> {
                             "SELECT e FROM Editorial e WHERE e.nombre LIKE :nombre")
                     .setParameter("nombre", editorial.getNombre())
                     .getSingleResult();
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         desconectar();
@@ -74,15 +74,15 @@ public class EditorialDAO extends DAO<Editorial> {
             editoriales = em.createQuery("SELECT e FROM Editorial e WHERE e.nombre LIKE :nombre")
                     .setParameter("nombre", nombre)
                     .getResultList();
-            if (editoriales.size()>0){
+            if (editoriales.size() > 0) {
                 for (Editorial e : editoriales) {
                     System.out.println(e);
                 }
-            }else{
+            } else {
                 System.out.println("No se encontraron resultados");
             }
-        }catch (Exception e){
-            System.out.println("Error en la busqueda: "+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error en la busqueda: " + e.getMessage());
             return;
         }
         desconectar();
@@ -92,17 +92,17 @@ public class EditorialDAO extends DAO<Editorial> {
         conectar();
         Editorial editorial = em.find(Editorial.class, id);
         if (editorial != null) {
-            if (editorial.getAlta()){
+            if (editorial.getAlta()) {
                 editorial.setAlta(false);
                 System.out.println("Se dio de baja la Editorial");
-            }else {
+            } else {
                 editorial.setAlta(true);
                 System.out.println("Se dio de alta la Editorial");
             }
             em.getTransaction().begin();
             em.merge(editorial);
             em.getTransaction().commit();
-        }else {
+        } else {
             System.out.println("No se encontro la editorial");
         }
         desconectar();

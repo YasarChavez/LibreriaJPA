@@ -266,9 +266,9 @@ public class LibroService {
                                 System.out.println("Error: " + e.getMessage());
                             }
                             break;
-                            case 0:
-                                System.out.println("Saliendo del menu de modificación.");
-                                break;
+                        case 0:
+                            System.out.println("Saliendo del menu de modificación.");
+                            break;
                         default:
                             System.out.println("Opción incorrecta.");
                             break;

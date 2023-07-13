@@ -41,14 +41,14 @@ public class LibroDAO extends DAO<Libro> {
         conectar();
         Libro libro;
         try {
-            libro = em.find(Libro.class,isbn);
+            libro = em.find(Libro.class, isbn);
             if (libro != null) {
                 System.out.println(libro);
-            }else {
+            } else {
                 System.out.println("No se encontro el libro");
             }
-        }catch (Exception e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
             return null;
         }
         desconectar();
@@ -107,7 +107,7 @@ public class LibroDAO extends DAO<Libro> {
                     .setParameter("anio", libro.getAnio())
                     .setParameter("editorial", libro.getEditorial().getNombre())
                     .setParameter("autor", libro.getAutor().getNombre()).getSingleResult();
-        }catch (Exception e) {
+        } catch (Exception e) {
             libroExiste = null;
         }
         desconectar();
@@ -121,7 +121,7 @@ public class LibroDAO extends DAO<Libro> {
             if (libro.getAlta()) {
                 libro.setAlta(false);
                 System.out.println("Libro dado de baja");
-            }else {
+            } else {
                 libro.setAlta(true);
                 System.out.println("Libro dado de alta");
             }

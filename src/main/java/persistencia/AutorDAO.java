@@ -30,11 +30,11 @@ public class AutorDAO extends DAO<Autor> {
                     .getSingleResult();
             if (autor != null) {
                 System.out.println(autor);
-            }else {
+            } else {
                 System.out.println("No se encontro el autor");
             }
-        }catch (Exception e){
-            System.out.println("Error: "+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
             return null;
         }
         desconectar();
@@ -49,11 +49,11 @@ public class AutorDAO extends DAO<Autor> {
             if (autor != null) {
                 System.out.println(autor);
 
-            }else {
+            } else {
                 System.out.println("No  se encontro el autor");
             }
-        }catch (Exception e){
-            System.out.println("Error: "+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
             return null;
         }
         desconectar();
@@ -65,9 +65,7 @@ public class AutorDAO extends DAO<Autor> {
         List<Autor> autores = em.createQuery("SELECT a FROM Autor a").getResultList();
         if (autores != null) {
             for (Autor autor : autores) {
-                if (autor.getAlta()==true){
-                    System.out.println(autor);
-                }
+                System.out.println(autor);
             }
         }
         desconectar();
@@ -94,18 +92,19 @@ public class AutorDAO extends DAO<Autor> {
             if (autor.getAlta()) {
                 autor.setAlta(false);
                 System.out.println("Autor dado de baja");
-            }else {
+            } else {
                 autor.setAlta(true);
                 System.out.println("Autor dado de alta");
             }
             em.getTransaction().begin();
             em.merge(autor);
             em.getTransaction().commit();
-        }else {
+        } else {
             System.out.println("No se encontro el autor");
         }
         desconectar();
     }
+
     public void eliminarAutor(Integer id) {
         conectar();
         Autor autor = em.find(Autor.class, id);
@@ -113,7 +112,7 @@ public class AutorDAO extends DAO<Autor> {
             em.getTransaction().begin();
             em.remove(autor);
             em.getTransaction().commit();
-        }else {
+        } else {
             System.out.println("No se encontro el autor");
         }
         desconectar();

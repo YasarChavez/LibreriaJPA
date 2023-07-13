@@ -1,8 +1,6 @@
 package org.libreria;
 
-import servicio.AutorService;
-import servicio.EditorialService;
-import servicio.LibroService;
+import servicio.ClienteService;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +8,8 @@ public class Main {
 //        AutorService autorService = new AutorService();
 //        LibroService libroService = new LibroService();
 //        EditorialService editorialService = new EditorialService();
-        Menu.menu();
+        ClienteService clienteService = new ClienteService();
+
+//        Menu.menu();
     }
 }

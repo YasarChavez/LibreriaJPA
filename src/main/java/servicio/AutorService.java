@@ -2,7 +2,6 @@ package servicio;
 
 import entidad.Autor;
 import persistencia.AutorDAO;
-import persistencia.DAO;
 
 import java.util.Scanner;
 
@@ -63,6 +62,7 @@ public class AutorService {
             System.out.println(e.getMessage());
         }
     }
+
     public void modificarAutorPorId() {
         try {
             System.out.println("Ingrese el id del autor que desea modificar:");
@@ -71,14 +71,14 @@ public class AutorService {
             if (autor != null) {
                 System.out.println("Ingrese el nuevo nombre del autor:");
                 autor.setNombre(leer.next());
-                if (!DAO.existeAutor(autor)){
+                if (!DAO.existeAutor(autor)) {
                     DAO.editar(autor);
                     System.out.println("Autor modificado correctamente");
-                }else {
+                } else {
                     System.out.println("El autor ya existe");
                     modificarAutorPorId();
                 }
-            }else {
+            } else {
                 modificarAutorPorId();
             }
         } catch (Exception e) {
