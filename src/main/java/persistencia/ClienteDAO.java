@@ -1,5 +1,6 @@
 package persistencia;
 
+import entidad.Autor;
 import entidad.Cliente;
 
 import java.util.List;
@@ -44,6 +45,7 @@ public class ClienteDAO extends DAO<Cliente> {
         try {
             cliente = (Cliente) em.createQuery("SELECT c FROM Cliente c WHERE c.documento = :documento")
                     .setParameter("documento", documento)
+                    .setMaxResults(1)
                     .getSingleResult();
             if (cliente != null) {
                 System.out.println(cliente);
@@ -54,5 +56,20 @@ public class ClienteDAO extends DAO<Cliente> {
         }
         desconectar();
         return cliente;
+    }
+
+    public boolean existeCliente(Cliente cliente) {
+        conectar();
+        Cliente clienteExiste;
+        try {
+            clienteExiste = (Cliente) em.createQuery("SELECT c FROM Cliente c WHERE c.documento = :documento")
+                    .setParameter("documento", cliente.getDocumento())
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return false;
+        }
+        desconectar();
+        return clienteExiste != null;
     }
 }

@@ -95,10 +95,6 @@ public class LibroDAO extends DAO<Libro> {
 
     public boolean existeLibro(Libro libro) {
         conectar();
-        libro.getTitulo();
-        libro.getAnio();
-        libro.getEditorial().getNombre();
-        libro.getAutor().getNombre();
         Libro libroExiste;
         try {
             libroExiste = (Libro) em.createQuery(

@@ -3,6 +3,7 @@ package servicio;
 import entidad.Cliente;
 import persistencia.ClienteDAO;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ClienteService {
@@ -16,19 +17,35 @@ public class ClienteService {
     public void crearCliente() {
         Cliente cliente = new Cliente();
         try {
-            System.out.println("Ingrese el documento del cliente");
-            cliente.setDocumento(leer.nextLong());
+            long documento = 0;
+            while (true) {
+                try {
+                    System.out.println("Ingrese el documento del cliente");
+                    cliente.setDocumento(leer.nextLong());
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: Tipo de dato incorrecto.");
+                    leer.nextLine(); // Limpiar el buffer del scanner
+                }
+            }
             System.out.println("Ingrese el nombre del cliente");
             cliente.setNombre(leer.next());
+
             System.out.println("Ingrese el apellido del cliente");
             cliente.setApellido(leer.next());
+
             System.out.println("Ingrese el telefono del cliente");
             cliente.setTelefono(leer.next());
-            if (cliente.getDocumento() != 0 && cliente.getNombre() != null && cliente.getApellido() != null && cliente.getTelefono() != null) {
+
+            boolean existe = DAO.existeCliente(cliente);
+            if (!existe) {
                 DAO.guardar(cliente);
                 System.out.println("Cliente creado");
             } else {
                 System.out.println("Error al ingresar los datos");
+                if (existe){
+                    System.out.println("Ya existe el Cliente");
+                }
                 crearCliente();
             }
         } catch (
@@ -49,7 +66,7 @@ public class ClienteService {
         long documento = 0;
         while (true) {
            try {
-               System.out.println("Ingrese el documento del cliente a buscar");
+               System.out.println("Ingrese el documento del cliente a buscar:");
                documento = leer.nextLong();
                return DAO.buscarClientePorDocumento(documento);
            }catch (Exception e){

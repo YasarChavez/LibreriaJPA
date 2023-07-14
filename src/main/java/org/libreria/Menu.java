@@ -1,8 +1,6 @@
 package org.libreria;
 
-import servicio.AutorService;
-import servicio.EditorialService;
-import servicio.LibroService;
+import servicio.*;
 
 import java.util.Scanner;
 
@@ -12,6 +10,8 @@ public class Menu {
         AutorService autorService = new AutorService();
         EditorialService editorialService = new EditorialService();
         LibroService libroService = new LibroService();
+        PrestamoService prestamoService = new PrestamoService();
+        ClienteService clienteService = new ClienteService();
 
         int opcion = -1;
         do {
@@ -19,6 +19,8 @@ public class Menu {
             System.out.println("1. Gestión de Autores");
             System.out.println("2. Gestión de Editoriales");
             System.out.println("3. Gestión de Libros");
+            System.out.println("4. Gestión de Clientes");
+            System.out.println("5. Gestión de Prestamos");
             System.out.println("0. Salir");
             try {
                 opcion = leer.nextInt();
@@ -35,6 +37,12 @@ public class Menu {
                     break;
                 case 3:
                     gestionLibros(libroService, leer);
+                    break;
+                case 4:
+                    gestionCliente(clienteService, leer);
+                    break;
+                case 5:
+                    gestionPrestamo(prestamoService, leer);
                     break;
                 case 0:
                     System.out.println("Saliendo...");
@@ -184,6 +192,78 @@ public class Menu {
                     break;
                 case 8:
                     libroService.modificarLibroPorISBN();
+                    break;
+                case 0:
+                    System.out.println("Volviendo al Menú Principal...");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+                    break;
+            }
+        } while (opcion != 0);
+    }
+
+    public static void gestionCliente(ClienteService clienteService, Scanner leer) {
+        int opcion = -1;
+        do {
+            System.out.println();
+            System.out.println("----- GESTIÓN DE CLIENTES -----");
+            System.out.println("1. Agregar Cliente");
+            System.out.println("2. Listar Clientes");
+            System.out.println("3. Buscar Cliente Por Documento");
+            System.out.println("0. Volver al Menú Principal");
+            try {
+                opcion = leer.nextInt();
+            } catch (Exception e) {
+                System.out.println("Error: " + e.fillInStackTrace());
+                leer.next();
+            }
+            switch (opcion) {
+                case 1:
+                    clienteService.crearCliente();
+                    break;
+                case 2:
+                    clienteService.listarClientes();
+                    break;
+                case 3:
+                    clienteService.buscarClientePorDocumento();
+                    break;
+
+                case 0:
+                    System.out.println("Volviendo al Menú Principal...");
+                    break;
+
+                default:
+                    System.out.println("Opcion no valida");
+                    break;
+            }
+        } while (opcion != 0);
+    }
+
+    public static void gestionPrestamo(PrestamoService prestamoService, Scanner leer) {
+        int opcion = -1;
+        do {
+            System.out.println();
+            System.out.println("----- GESTIÓN DE PRESTAMOS -----");
+            System.out.println("1. Agregar Prestamo");
+            System.out.println("2. Listar Prestamos por Cliente");
+            System.out.println("3. Devolver Prestamo");
+            System.out.println("0. Volver al Menú Principal");
+            try {
+                opcion = leer.nextInt();
+            } catch (Exception e) {
+                System.out.println("Error: " + e.fillInStackTrace());
+                leer.next();
+            }
+            switch (opcion) {
+                case 1:
+                    prestamoService.crearPrestamo();
+                    break;
+                case 2:
+                    prestamoService.listarPrestamos();
+                    break;
+                case 3:
+                    prestamoService.devolverPrestamo();
                     break;
                 case 0:
                     System.out.println("Volviendo al Menú Principal...");

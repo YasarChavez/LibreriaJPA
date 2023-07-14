@@ -12,8 +12,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="a7599c94-5ef2-4298-be0f-214e1c066c26">
-      <console name="libreria" type="STANDARD" schema="libreria" session="Main" />
+    <connection id="d32a1acb-b859-4dc5-909b-7b842b2bde43">
+      <console name="Connection" type="STANDARD" schema="libreria" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -23,7 +23,19 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="a7599c94-5ef2-4298-be0f-214e1c066c26" dataset="libreria.libro" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="d32a1acb-b859-4dc5-909b-7b842b2bde43" dataset="libreria.autor" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="d32a1acb-b859-4dc5-909b-7b842b2bde43" dataset="libreria.cliente" active-filter-id="EMPTY_FILTER" />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs />
+    </execution-history>
+    <argument-values-cache />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -31,10 +43,10 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="a7599c94-5ef2-4298-be0f-214e1c066c26" active="true" signed="true">
+      <connection id="d32a1acb-b859-4dc5-909b-7b842b2bde43" active="true" signed="true">
         <database>
-          <name value="libreria" />
-          <description value="libreria" />
+          <name value="Connection" />
+          <description value="BASE DE DATOS" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
           <database-version value="8.0" />
