@@ -1,6 +1,5 @@
 package persistencia;
 
-import entidad.Autor;
 import entidad.Cliente;
 
 import java.util.List;
@@ -27,13 +26,13 @@ public class ClienteDAO extends DAO<Cliente> {
             List clientes = em.createQuery("SELECT c FROM Cliente c").getResultList();
             if (clientes.isEmpty()) {
                 System.out.println("No hay clientes");
-            }else {
+            } else {
                 System.out.println("Lista de clientes:");
                 for (Object cliente : clientes) {
                     System.out.println(cliente);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         desconectar();
@@ -50,8 +49,8 @@ public class ClienteDAO extends DAO<Cliente> {
             if (cliente != null) {
                 System.out.println(cliente);
             }
-        }catch (Exception e){
-            System.out.println("Error al buscar cliente por documento: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al buscar cliente por documento: " + e.getMessage());
             return null;
         }
         desconectar();

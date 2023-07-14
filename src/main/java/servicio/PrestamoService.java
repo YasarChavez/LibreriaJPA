@@ -3,15 +3,14 @@ package servicio;
 import entidad.Cliente;
 import entidad.Libro;
 import entidad.Prestamo;
-import persistencia.LibroDAO;
 import persistencia.PrestamoDAO;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class PrestamoService {
-    Scanner leer = new Scanner(System.in).useDelimiter("\n");
     private final PrestamoDAO DAO;
+    Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
     public PrestamoService() {
         this.DAO = new PrestamoDAO();
@@ -34,7 +33,7 @@ public class PrestamoService {
             }
         }
 
-        if(libro.getEjemplaresRestantes() == 0){
+        if (libro.getEjemplaresRestantes() == 0) {
             System.out.println("No hay mas ejemplares disponibles!");
             return;
         }
@@ -86,9 +85,9 @@ public class PrestamoService {
             return;
         }
 
-        if(libro.getEjemplaresRestantes() == 0){
+        if (libro.getEjemplaresRestantes() == 0) {
             System.out.println("No hay mas ejemplares disponibles!");
-        }else {
+        } else {
             LibroService libroService = new LibroService();
             libro.setEjemplaresRestantes(libro.getEjemplaresRestantes() - 1);
             libro.setEjemplaresPrestados(libro.getEjemplaresPrestados() + 1);
@@ -99,29 +98,29 @@ public class PrestamoService {
         }
     }
 
-    public void listarPrestamos(){
+    public void listarPrestamos() {
         Cliente cliente = (new ClienteService()).buscarClientePorDocumento();
-        if(cliente == null){
+        if (cliente == null) {
             System.out.println("El cliente no existe!");
-        }else {
+        } else {
             DAO.listarPrestamosPorCliente(cliente);
         }
     }
 
-    public void devolverPrestamo(){
+    public void devolverPrestamo() {
         Cliente cliente = (new ClienteService()).buscarClientePorDocumento();
-        if(cliente == null){
+        if (cliente == null) {
             System.out.println("El cliente no existe!");
-        }else {
+        } else {
             DAO.listarPrestamosPorCliente(cliente);
         }
         System.out.println("Ingrese id  del prestamo que desea devolver:");
         int id = leer.nextInt();
         Prestamo prestamo = DAO.buscarPrestamoPorID(id);
-        if(prestamo == null){
+        if (prestamo == null) {
             System.out.println("El prestamo no existe!");
-        }else {
-            LibroService  libroService = new LibroService();
+        } else {
+            LibroService libroService = new LibroService();
             Libro libro = prestamo.getLibro();
             libro.setEjemplaresRestantes(libro.getEjemplaresRestantes() + 1);
             libro.setEjemplaresPrestados(libro.getEjemplaresPrestados() - 1);
@@ -130,6 +129,7 @@ public class PrestamoService {
             System.out.println("Prestamo devuelto!");
         }
     }
+
     public void editar(Prestamo prestamo) {
         DAO.editar(prestamo);
     }

@@ -43,7 +43,7 @@ public class ClienteService {
                 System.out.println("Cliente creado");
             } else {
                 System.out.println("Error al ingresar los datos");
-                if (existe){
+                if (existe) {
                     System.out.println("Ya existe el Cliente");
                 }
                 crearCliente();
@@ -65,14 +65,14 @@ public class ClienteService {
     public Cliente buscarClientePorDocumento() {
         long documento = 0;
         while (true) {
-           try {
-               System.out.println("Ingrese el documento del cliente a buscar:");
-               documento = leer.nextLong();
-               return DAO.buscarClientePorDocumento(documento);
-           }catch (Exception e){
-               System.out.println("Error al ingresar el documento");
-               leer.nextLine(); // Limpiar el buffer del scanner
-           }
+            try {
+                System.out.println("Ingrese el documento del cliente a buscar:");
+                documento = leer.nextLong();
+                return DAO.buscarClientePorDocumento(documento);
+            } catch (Exception e) {
+                System.out.println("Error al ingresar el documento");
+                leer.nextLine(); // Limpiar el buffer del scanner
+            }
         }
     }
 }
