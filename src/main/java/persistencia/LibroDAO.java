@@ -104,7 +104,7 @@ public class LibroDAO extends DAO<Libro> {
                     .setParameter("editorial", libro.getEditorial().getNombre())
                     .setParameter("autor", libro.getAutor().getNombre()).getSingleResult();
         } catch (Exception e) {
-            libroExiste = null;
+            return false;
         }
         desconectar();
         return libroExiste != null;

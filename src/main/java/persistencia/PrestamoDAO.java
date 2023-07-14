@@ -35,7 +35,7 @@ public class PrestamoDAO extends DAO<Prestamo> {
                 System.out.println("No hay prestamos para este cliente");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error: "+e.getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ public class PrestamoDAO extends DAO<Prestamo> {
                 return prestamo;
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error: "+e.getMessage());
         }
         return null;
     }
