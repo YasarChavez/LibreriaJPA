@@ -3,6 +3,7 @@ package servicio;
 import entidad.Editorial;
 import persistencia.EditorialDAO;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EditorialService {
@@ -64,7 +65,15 @@ public class EditorialService {
     public void modificarEditorialPorId() {
         try {
             System.out.println("Ingrese el id de la editorial que desea modificar:");
-            int l = leer.nextInt();
+            int l = 0;
+            try {
+                while (true){
+                    l=leer.nextInt();
+                    break;
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Error: "+e.getMessage());
+            }
             Editorial editorial = DAO.buscarPorId(l);
             if (editorial != null) {
                 System.out.println("Ingrese el nuevo nombre de la editorial:");
@@ -77,6 +86,7 @@ public class EditorialService {
                     modificarEditorialPorId();
                 }
             } else {
+                leer.next();
                 modificarEditorialPorId();
             }
         } catch (Exception e) {

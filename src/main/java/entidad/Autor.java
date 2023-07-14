@@ -17,12 +17,6 @@ public class Autor implements Serializable {
     public Autor() {
     }
 
-    public Autor(Integer id, String nombre, Boolean alta) {
-        this.id = id;
-        this.nombre = nombre;
-        this.alta = alta;
-    }
-
     public Integer getId() {
         return id;
     }

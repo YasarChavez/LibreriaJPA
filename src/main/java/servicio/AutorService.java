@@ -3,6 +3,7 @@ package servicio;
 import entidad.Autor;
 import persistencia.AutorDAO;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AutorService {
@@ -66,7 +67,15 @@ public class AutorService {
     public void modificarAutorPorId() {
         try {
             System.out.println("Ingrese el id del autor que desea modificar:");
-            int l = leer.nextInt();
+            int l = 0;
+            try {
+                while (true) {
+                    l = leer.nextInt();
+                    break;
+                }
+            }catch (InputMismatchException  e){
+                System.out.println("Error: " + e.getMessage());
+            }
             Autor autor = DAO.buscarPorId(l);
             if (autor != null) {
                 System.out.println("Ingrese el nuevo nombre del autor:");
@@ -79,6 +88,7 @@ public class AutorService {
                     modificarAutorPorId();
                 }
             } else {
+                leer.next();
                 modificarAutorPorId();
             }
         } catch (Exception e) {

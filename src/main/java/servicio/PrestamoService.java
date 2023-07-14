@@ -4,7 +4,6 @@ import entidad.Cliente;
 import entidad.Libro;
 import entidad.Prestamo;
 import persistencia.PrestamoDAO;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -58,6 +57,10 @@ public class PrestamoService {
                 String fecha = leer.next();
                 fechaPrestamo = LocalDate.parse(fecha);
                 System.out.println(fechaPrestamo);
+                if (fechaPrestamo.isBefore(hoy)){
+                    System.out.println("La fecha de prestamo no puede ser anterior a la fecha actual!");
+                    continue;
+                }
                 break;
             } catch (Exception e) {
                 System.out.println("Ingrese un valor valido!");
@@ -70,19 +73,14 @@ public class PrestamoService {
                 String fecha = leer.next();
                 fechaDevolucion = LocalDate.parse(fecha);
                 System.out.println(fechaDevolucion);
+                if (fechaDevolucion.isBefore(fechaPrestamo)){
+                    System.out.println("La fecha de devolucion no puede ser anterior a la fecha de prestamo!");
+                    continue;
+                }
                 break;
             } catch (Exception e) {
                 System.out.println("Ingrese un valor valido!");
             }
-        }
-
-        if (fechaDevolucion.isBefore(fechaPrestamo)) {
-            System.out.println("La fecha de devolucion no puede ser anterior a la fecha de prestamo!");
-            return;
-        }
-        if (fechaDevolucion.isBefore(hoy)) {
-            System.out.println("La fecha de devolucion no puede ser anterior a la fecha actual!");
-            return;
         }
 
         if (libro.getEjemplaresRestantes() == 0) {

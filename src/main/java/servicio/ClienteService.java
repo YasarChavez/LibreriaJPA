@@ -17,7 +17,6 @@ public class ClienteService {
     public void crearCliente() {
         Cliente cliente = new Cliente();
         try {
-            long documento = 0;
             while (true) {
                 try {
                     System.out.println("Ingrese el documento del cliente");

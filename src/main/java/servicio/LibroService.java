@@ -16,7 +16,7 @@ public class LibroService {
 
     public void listarLibros() {
         try {
-            DAO.listartodos();
+            DAO.listarTodos();
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -55,14 +55,20 @@ public class LibroDAO extends DAO<Libro> {
         return libro;
     }
 
-    public void listartodos() {
+    public void listarTodos() {
         conectar();
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l")
-                .getResultList();
-        desconectar();
-        for (Libro libro : libros) {
-            System.out.println(libro);
+        try{
+            List<Libro> libros = em.createQuery("SELECT l FROM Libro l")
+                    .getResultList();
+            if (libros != null) {
+                for (Libro libro : libros) {
+                    System.out.println(libro);
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
+        desconectar();
     }
 
     public void buscarLibroPorAutor(String nombreAutor) {

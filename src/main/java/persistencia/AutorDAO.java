@@ -43,18 +43,16 @@ public class AutorDAO extends DAO<Autor> {
 
     public Autor buscarPorId(int l) {
         conectar();
-        Autor autor;
+        Autor autor = null;
         try {
             autor = em.find(Autor.class, l);
             if (autor != null) {
                 System.out.println(autor);
-
             } else {
                 System.out.println("No  se encontro el autor");
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            return null;
         }
         desconectar();
         return autor;
