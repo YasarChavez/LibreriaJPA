@@ -160,7 +160,17 @@ public class LibroService {
     public void modificarLibroPorISBN() {
         try {
             System.out.println("Ingrese el ISBN del libro que desea modificar:");
-            long isbn = leer.nextLong();
+            long isbn = 0;
+            while (true){
+                try {
+                    System.out.println("Ingrese ISBN:");
+                    isbn = leer.nextLong();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: Debes ingresar un número para el ISBN.");
+                    leer.nextLine(); // Limpiar el buffer del scanner
+                }
+            }
             Libro libro = DAO.buscarPorISBN(isbn);
             if (libro != null) {
                 int menu = -1;
@@ -179,7 +189,6 @@ public class LibroService {
                         case 1:
                             System.out.println("Ingrese el nuevo título:");
                             libro.setTitulo(leer.next());
-                            leer.nextLine();
                             break;
                         case 2:
                             int anio = 0;
