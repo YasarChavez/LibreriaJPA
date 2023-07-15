@@ -1,0 +1,26 @@
+
+o
+java:S1192"YDefine a constant instead of duplicating this literal "Ingrese un valor valido!" 4 times.(‚³Ş×
+h	java:S116"NRename this field "DAO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êİãıÿÿÿÿ
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(çç“Š
+S	java:S106"9Replace this use of System.out or System.err by a logger.(°¸Ø€şÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(‚³Ş×
+S	java:S106%"9Replace this use of System.out or System.err by a logger.(œ®ºùÿÿÿÿ
+S	java:S106."9Replace this use of System.out or System.err by a logger.(¶øÄ¢ıÿÿÿÿ
+N	java:S1062"9Replace this use of System.out or System.err by a logger.(‚³Ş×
+S	java:S1069"9Replace this use of System.out or System.err by a logger.(îÂíÂøÿÿÿÿ
+S	java:S106<"9Replace this use of System.out or System.err by a logger.(¶Ô¶üÿÿÿÿ
+N	java:S106?"9Replace this use of System.out or System.err by a logger.(‚³Ş×
+N	java:S106E"9Replace this use of System.out or System.err by a logger.(şÁ¶
+N	java:S106H"9Replace this use of System.out or System.err by a logger.(Šà„Ğ
+N	java:S106K"9Replace this use of System.out or System.err by a logger.(‚³Ş×
+N	java:S106P"9Replace this use of System.out or System.err by a logger.(á¬Ï
+S	java:S106T"9Replace this use of System.out or System.err by a logger.(£”ÉÌûÿÿÿÿ
+S	java:S106Y"9Replace this use of System.out or System.err by a logger.(œ®ºùÿÿÿÿ
+S	java:S106a"9Replace this use of System.out or System.err by a logger.(²Ùíâÿÿÿÿÿ
+N	java:S106h"9Replace this use of System.out or System.err by a logger.(‹ŒØà
+N	java:S106q"9Replace this use of System.out or System.err by a logger.(‹ŒØà
+N	java:S106u"9Replace this use of System.out or System.err by a logger.(Š‘´¬
+N	java:S106y"9Replace this use of System.out or System.err by a logger.(Ïïƒõ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(§›ıŸşÿÿÿÿ

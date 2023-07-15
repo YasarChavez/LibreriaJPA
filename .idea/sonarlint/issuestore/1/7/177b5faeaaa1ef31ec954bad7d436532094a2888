@@ -1,0 +1,28 @@
+
+E
+java:S5411{"(Use a primitive boolean expression here.(ŞØ½ç8ú½“³•1
+E
+java:S1185
+"(Remove this method to simply inherit it.(ë¶õø8­¾“³•1
+J
+java:S1185"(Remove this method to simply inherit it.(è¯íÚûÿÿÿÿ8À¾“³•1
+J
+java:S1185"(Remove this method to simply inherit it.(ş¾ğÚùÿÿÿÿ8Â¾“³•1
+U	java:S106 "9Replace this use of System.out or System.err by a logger.(ó©Ë•8Æ¾“³•1
+U	java:S106#"9Replace this use of System.out or System.err by a logger.(­Â¦«8Ç¾“³•1
+U	java:S106."9Replace this use of System.out or System.err by a logger.(ó©Ë•8Ë¾“³•1
+U	java:S1060"9Replace this use of System.out or System.err by a logger.(œø¨8Ì¾“³•1
+U	java:S1063"9Replace this use of System.out or System.err by a logger.(äìÎÆ8Í¾“³•1
+U	java:S106A"9Replace this use of System.out or System.err by a logger.(ó©Ë•8Ó¾“³•1
+U	java:S106E"9Replace this use of System.out or System.err by a logger.(äìÎÆ8Ô¾“³•1
+[
+java:S1155O">Use isEmpty() to check whether the collection is empty or not.(¦´¥8Ø¾“³•1
+Z	java:S106P"9Replace this use of System.out or System.err by a logger.(Ç°•¹ùÿÿÿÿ8Ù¾“³•1
+U	java:S106S"9Replace this use of System.out or System.err by a logger.(ó©Ë•8Ù¾“³•1
+[
+java:S1155]">Use isEmpty() to check whether the collection is empty or not.(¦´¥8İ¾“³•1
+Z	java:S106^"9Replace this use of System.out or System.err by a logger.(Îè”şÿÿÿÿ8Ş¾“³•1
+U	java:S106a"9Replace this use of System.out or System.err by a logger.(ó©Ë•8ß¾“³•1
+Z	java:S106}"9Replace this use of System.out or System.err by a logger.(ß€ÌÇıÿÿÿÿ8æ¾“³•1
+V	java:S106€"9Replace this use of System.out or System.err by a logger.(®æË«8ç¾“³•1
+V	java:S106†"9Replace this use of System.out or System.err by a logger.(œø¨8è¾“³•1
