@@ -57,7 +57,7 @@ public class LibroDAO extends DAO<Libro> {
 
     public void listarTodos() {
         conectar();
-        try{
+        try {
             List<Libro> libros = em.createQuery("SELECT l FROM Libro l")
                     .getResultList();
             if (libros != null) {
@@ -65,8 +65,8 @@ public class LibroDAO extends DAO<Libro> {
                     System.out.println(libro);
                 }
             }
-        }catch (Exception e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         desconectar();
     }

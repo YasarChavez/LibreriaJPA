@@ -67,12 +67,12 @@ public class EditorialService {
             System.out.println("Ingrese el id de la editorial que desea modificar:");
             int l = 0;
             try {
-                while (true){
-                    l=leer.nextInt();
+                while (true) {
+                    l = leer.nextInt();
                     break;
                 }
-            }catch (InputMismatchException e){
-                System.out.println("Error: "+e.getMessage());
+            } catch (InputMismatchException e) {
+                System.out.println("Error: " + e.getMessage());
             }
             Editorial editorial = DAO.buscarPorId(l);
             if (editorial != null) {

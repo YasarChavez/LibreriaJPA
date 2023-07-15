@@ -73,7 +73,7 @@ public class AutorService {
                     l = leer.nextInt();
                     break;
                 }
-            }catch (InputMismatchException  e){
+            } catch (InputMismatchException e) {
                 System.out.println("Error: " + e.getMessage());
             }
             Autor autor = DAO.buscarPorId(l);
