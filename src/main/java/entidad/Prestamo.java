@@ -31,9 +31,6 @@ public class Prestamo implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public LocalDate getFechaPrestamo() {
         return fechaPrestamo;

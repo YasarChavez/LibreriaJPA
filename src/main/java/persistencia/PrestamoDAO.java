@@ -23,8 +23,9 @@ public class PrestamoDAO extends DAO<Prestamo> {
 
     public void listarPrestamosPorCliente(Cliente cliente) {
         conectar();
+        List<Prestamo> prestamos;
         try {
-            List<Prestamo> prestamos = em.createQuery("SELECT p FROM Prestamo p WHERE p.cliente.documento = :documento")
+            prestamos = em.createQuery("SELECT p FROM Prestamo p WHERE p.cliente.documento = :documento")
                     .setParameter("documento", cliente.getDocumento())
                     .getResultList();
             if (prestamos.size() > 0) {
@@ -37,6 +38,7 @@ public class PrestamoDAO extends DAO<Prestamo> {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        desconectar();
     }
 
     public Prestamo buscarPrestamoPorID(int id) {
@@ -46,11 +48,11 @@ public class PrestamoDAO extends DAO<Prestamo> {
             prestamo = em.find(Prestamo.class, id);
             if (prestamo != null) {
                 System.out.println(prestamo);
-                return prestamo;
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+            return null;
         }
-        return null;
+        return prestamo;
     }
 }

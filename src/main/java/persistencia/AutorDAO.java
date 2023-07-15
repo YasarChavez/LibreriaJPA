@@ -43,7 +43,7 @@ public class AutorDAO extends DAO<Autor> {
 
     public Autor buscarPorId(int l) {
         conectar();
-        Autor autor = null;
+        Autor autor = new Autor();
         try {
             autor = em.find(Autor.class, l);
             if (autor != null) {
@@ -60,11 +60,18 @@ public class AutorDAO extends DAO<Autor> {
 
     public void listarAutores() {
         conectar();
-        List<Autor> autores = em.createQuery("SELECT a FROM Autor a").getResultList();
-        if (autores != null) {
-            for (Autor autor : autores) {
-                System.out.println(autor);
+        List<Autor> autores;
+        try {
+            autores = em.createQuery("SELECT a FROM Autor a").getResultList();
+            if (autores.isEmpty()) {
+                System.out.println("No hay autores");
+            } else {
+                for (Autor autor : autores) {
+                    System.out.println(autor);
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         desconectar();
     }
@@ -85,33 +92,43 @@ public class AutorDAO extends DAO<Autor> {
 
     public void altaBajaAutor(Integer id) {
         conectar();
-        Autor autor = em.find(Autor.class, id);
-        if (autor != null) {
-            if (autor.getAlta()) {
-                autor.setAlta(false);
-                System.out.println("Autor dado de baja");
+        Autor autor;
+        try {
+            autor = em.find(Autor.class, id);
+            if (autor != null) {
+                if (autor.getAlta()) {
+                    autor.setAlta(false);
+                    System.out.println("Autor dado de baja");
+                } else {
+                    autor.setAlta(true);
+                    System.out.println("Autor dado de alta");
+                }
+                em.getTransaction().begin();
+                em.merge(autor);
+                em.getTransaction().commit();
             } else {
-                autor.setAlta(true);
-                System.out.println("Autor dado de alta");
+                System.out.println("No se encontro el autor");
             }
-            em.getTransaction().begin();
-            em.merge(autor);
-            em.getTransaction().commit();
-        } else {
-            System.out.println("No se encontro el autor");
+        }catch (Exception  e){
+            System.out.println("Error: "+e.getMessage());
         }
         desconectar();
     }
 
     public void eliminarAutor(Integer id) {
         conectar();
-        Autor autor = em.find(Autor.class, id);
-        if (autor != null) {
-            em.getTransaction().begin();
-            em.remove(autor);
-            em.getTransaction().commit();
-        } else {
-            System.out.println("No se encontro el autor");
+        Autor autor;
+        try {
+            autor = em.find(Autor.class, id);
+            if (autor != null) {
+                em.getTransaction().begin();
+                em.remove(autor);
+                em.getTransaction().commit();
+            } else {
+                System.out.println("No se encontro el autor");
+            }
+        }catch (Exception  e){
+            System.out.println("Error: "+e.getMessage());
         }
         desconectar();
     }

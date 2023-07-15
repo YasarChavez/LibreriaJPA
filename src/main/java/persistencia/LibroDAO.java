@@ -24,16 +24,21 @@ public class LibroDAO extends DAO<Libro> {
 
     public void buscarPorNombre(String nombre) {
         conectar();
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.titulo LIKE :nombre")
-                .setParameter("nombre", "%" + nombre + "%").getResultList();
-        desconectar();
-        if (libros != null) {
-            for (Libro libro : libros) {
-                System.out.println(libro);
+        List<Libro> libros;
+        try {
+            libros = em.createQuery("SELECT l FROM Libro l WHERE l.titulo LIKE :nombre")
+                    .setParameter("nombre", "%" + nombre + "%").getResultList();
+            if (libros != null) {
+                for (Libro libro : libros) {
+                    System.out.println(libro);
+                }
+            } else {
+                System.out.println("No se encontraron libros");
             }
-        } else {
-            System.out.println("No se encontraron libros");
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
+        desconectar();
     }
 
 
@@ -73,30 +78,42 @@ public class LibroDAO extends DAO<Libro> {
 
     public void buscarLibroPorAutor(String nombreAutor) {
         conectar();
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.autor.nombre LIKE :nombreAutor")
-                .setParameter("nombreAutor", "%" + nombreAutor + "%").getResultList();
-        desconectar();
-        if (libros.size() == 0) {
-            System.out.println("No se encontraron libros con ese autor");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
+        List<Libro> libros;
+        try {
+            libros = em.createQuery("SELECT l FROM Libro l WHERE l.autor.nombre LIKE :nombreAutor")
+                    .setParameter("nombreAutor", "%" + nombreAutor + "%").getResultList();
+            desconectar();
+            if (libros.size() == 0) {
+                System.out.println("No se encontraron libros con ese autor");
+            } else {
+                for (Libro libro : libros) {
+                    System.out.println(libro);
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
+        desconectar();
     }
 
     public void buscarLibroPorEditorial(String nombreEditorial) {
         conectar();
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l WHERE l.editorial.nombre LIKE :nombreEditorial")
-                .setParameter("nombreEditorial", "%" + nombreEditorial + "%").getResultList();
-        desconectar();
-        if (libros.size() == 0) {
-            System.out.println("No se encontraron libros con ese editorial");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
+        List<Libro> libros;
+        try {
+            libros = em.createQuery("SELECT l FROM Libro l WHERE l.editorial.nombre LIKE :nombreEditorial")
+                    .setParameter("nombreEditorial", "%" + nombreEditorial + "%").getResultList();
+            desconectar();
+            if (libros.size() == 0) {
+                System.out.println("No se encontraron libros con ese editorial");
+            } else {
+                for (Libro libro : libros) {
+                    System.out.println(libro);
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
+        desconectar();
     }
 
     public boolean existeLibro(Libro libro) {
@@ -118,20 +135,25 @@ public class LibroDAO extends DAO<Libro> {
 
     public void altaBajaLibroPorISBN(long isbn) {
         conectar();
-        Libro libro = em.find(Libro.class, isbn);
-        if (libro != null) {
-            if (libro.getAlta()) {
-                libro.setAlta(false);
-                System.out.println("Libro dado de baja");
+        Libro libro;
+        try {
+            libro  = em.find(Libro.class, isbn);
+            if (libro != null) {
+                if (libro.getAlta()) {
+                    libro.setAlta(false);
+                    System.out.println("Libro dado de baja");
+                } else {
+                    libro.setAlta(true);
+                    System.out.println("Libro dado de alta");
+                }
+                em.getTransaction().begin();
+                em.merge(libro);
+                em.getTransaction().commit();
             } else {
-                libro.setAlta(true);
-                System.out.println("Libro dado de alta");
+                System.out.println("No se encontro el libro");
             }
-            em.getTransaction().begin();
-            em.merge(libro);
-            em.getTransaction().commit();
-        } else {
-            System.out.println("No se encontro el libro");
+        }catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         desconectar();
     }

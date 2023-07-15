@@ -21,9 +21,6 @@ public class Cliente implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public long getDocumento() {
         return documento;

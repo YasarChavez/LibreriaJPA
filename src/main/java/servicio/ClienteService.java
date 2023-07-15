@@ -62,7 +62,7 @@ public class ClienteService {
     }
 
     public Cliente buscarClientePorDocumento() {
-        long documento = 0;
+        long documento;
         while (true) {
             try {
                 System.out.println("Ingrese el documento del cliente a buscar:");

@@ -23,20 +23,25 @@ public class EditorialDAO extends DAO<Editorial> {
 
     public void listarEditoriales() {
         conectar();
-        List<Editorial> editoriales = (List<Editorial>) em.createQuery("SELECT e FROM Editorial e").getResultList();
-        if (editoriales != null) {
-            for (Editorial editorial : editoriales) {
-                System.out.println(editorial);
+        List<Editorial> editoriales;
+        try {
+            editoriales  = em.createQuery("SELECT e FROM Editorial e").getResultList();
+            if (editoriales != null) {
+                for (Editorial editorial : editoriales) {
+                    System.out.println(editorial);
+                }
+            } else {
+                System.out.println("No se encontraron resultados");
             }
-        } else {
-            System.out.println("No se encontraron resultados");
+        }catch (Exception e) {
+            System.out.println("Error en la busqueda: " + e.getMessage());
         }
         desconectar();
     }
 
     public Editorial buscarPorId(int id) {
         conectar();
-        Editorial editorial = null;
+        Editorial editorial = new Editorial();
         try {
             editorial = em.find(Editorial.class, id);
             if (editorial != null) {
@@ -89,20 +94,25 @@ public class EditorialDAO extends DAO<Editorial> {
 
     public void altaBajaEditorial(Integer id) {
         conectar();
-        Editorial editorial = em.find(Editorial.class, id);
-        if (editorial != null) {
-            if (editorial.getAlta()) {
-                editorial.setAlta(false);
-                System.out.println("Se dio de baja la Editorial");
+        Editorial editorial;
+        try {
+            editorial = em.find(Editorial.class, id);
+            if (editorial != null) {
+                if (editorial.getAlta()) {
+                    editorial.setAlta(false);
+                    System.out.println("Se dio de baja la Editorial");
+                } else {
+                    editorial.setAlta(true);
+                    System.out.println("Se dio de alta la Editorial");
+                }
+                em.getTransaction().begin();
+                em.merge(editorial);
+                em.getTransaction().commit();
             } else {
-                editorial.setAlta(true);
-                System.out.println("Se dio de alta la Editorial");
+                System.out.println("No se encontro la editorial");
             }
-            em.getTransaction().begin();
-            em.merge(editorial);
-            em.getTransaction().commit();
-        } else {
-            System.out.println("No se encontro la editorial");
+        }catch (Exception e) {
+            System.out.println("Error: "+ e.getMessage());
         }
         desconectar();
     }

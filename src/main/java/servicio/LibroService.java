@@ -18,7 +18,7 @@ public class LibroService {
         try {
             DAO.listarTodos();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -51,7 +51,7 @@ public class LibroService {
         System.out.println("Ingrese Titulo:");
         libro.setTitulo(leer.nextLine());
 
-        int anio = 0;
+        int anio;
         while (true) {
             try {
                 System.out.println("Ingrese año:");
@@ -65,7 +65,7 @@ public class LibroService {
         libro.setAnio(anio);
 
         // Repite el proceso de validación para los otros campos numéricos
-        int ejemplares = 0;
+        int ejemplares;
         while (true) {
             try {
                 System.out.println("Ingrese ejemplares:");
@@ -78,7 +78,7 @@ public class LibroService {
         }
         libro.setEjemplares(ejemplares);
 
-        int ejemplaresPrestados = 0;
+        int ejemplaresPrestados;
         while (true) {
             try {
                 System.out.println("Ingrese ejemplares prestados:");
@@ -91,7 +91,7 @@ public class LibroService {
         }
         libro.setEjemplaresPrestados(ejemplaresPrestados);
 
-        int ejemplaresRestantes = 0;
+        int ejemplaresRestantes;
         while (true) {
             try {
                 System.out.println("Ingrese ejemplares restantes:");
@@ -160,7 +160,7 @@ public class LibroService {
     public void modificarLibroPorISBN() {
         try {
             System.out.println("Ingrese el ISBN del libro que desea modificar:");
-            long isbn = 0;
+            long isbn;
             while (true) {
                 try {
                     System.out.println("Ingrese ISBN:");
@@ -173,7 +173,7 @@ public class LibroService {
             }
             Libro libro = DAO.buscarPorISBN(isbn);
             if (libro != null) {
-                int menu = -1;
+                int menu= -1;
                 do {
                     System.out.println("1. Modificar título");
                     System.out.println("2. Modificar año");
@@ -191,7 +191,7 @@ public class LibroService {
                             libro.setTitulo(leer.next());
                             break;
                         case 2:
-                            int anio = 0;
+                            int anio;
                             while (true) {
                                 try {
                                     System.out.println("Ingrese año:");
@@ -205,7 +205,7 @@ public class LibroService {
                             libro.setAnio(anio);
                             break;
                         case 3:
-                            int ejemplares = 0;
+                            int ejemplares;
                             while (true) {
                                 try {
                                     System.out.println("Ingrese ejemplares:");
@@ -219,7 +219,7 @@ public class LibroService {
                             libro.setEjemplares(ejemplares);
                             break;
                         case 4:
-                            int ejemplaresPrestados = 0;
+                            int ejemplaresPrestados;
                             while (true) {
                                 try {
                                     System.out.println("Ingrese ejemplares prestados:");
@@ -233,7 +233,7 @@ public class LibroService {
                             libro.setEjemplaresPrestados(ejemplaresPrestados);
                             break;
                         case 5:
-                            int ejemplaresRestantes = 0;
+                            int ejemplaresRestantes;
                             while (true) {
                                 try {
                                     System.out.println("Ingrese ejemplares restantes:");

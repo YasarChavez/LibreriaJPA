@@ -22,13 +22,14 @@ public class ClienteDAO extends DAO<Cliente> {
 
     public void listarClientes() {
         conectar();
+        List<Cliente> clientes;
         try {
-            List clientes = em.createQuery("SELECT c FROM Cliente c").getResultList();
+            clientes = em.createQuery("SELECT c FROM Cliente c").getResultList();
             if (clientes.isEmpty()) {
                 System.out.println("No hay clientes");
             } else {
                 System.out.println("Lista de clientes:");
-                for (Object cliente : clientes) {
+                for (Cliente cliente : clientes) {
                     System.out.println(cliente);
                 }
             }

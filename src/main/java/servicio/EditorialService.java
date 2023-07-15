@@ -37,7 +37,7 @@ public class EditorialService {
         try {
             DAO.listarEditoriales();
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 

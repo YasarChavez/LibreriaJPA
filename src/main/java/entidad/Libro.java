@@ -37,9 +37,6 @@ public class Libro implements Serializable {
         return isbn;
     }
 
-    public void setIsbn(long isbn) {
-        this.isbn = isbn;
-    }
 
     public String getTitulo() {
         return titulo;
