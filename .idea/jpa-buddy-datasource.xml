@@ -6,6 +6,7 @@
     </data-sources>
     <data-source-infos>
       <data-source-info id="1da9a29e-4622-4dd6-ba5d-0070e7efeb7b" persistence-unit-name="LibreriaTestPU" />
+      <data-source-info id="1da9a29e-4622-4dd6-ba5d-0070e7efeb7b" persistence-unit-name="Test" />
     </data-source-infos>
   </component>
 </project>
