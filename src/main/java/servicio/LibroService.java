@@ -5,10 +5,14 @@ import persistencia.LibroDAO;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class LibroService {
+
     private final LibroDAO DAO;
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
+    AutorService  autorService = new AutorService();
+    EditorialService editorialService = new EditorialService();
 
     public LibroService() {
         this.DAO = new LibroDAO();
@@ -45,7 +49,7 @@ public class LibroService {
         }
     }
 
-    public void cargarLibro() {
+    public void cargarLibro() throws InterruptedException {
         Libro libro = new Libro();
 
         System.out.println("Ingrese Titulo:");
@@ -104,17 +108,20 @@ public class LibroService {
         }
         libro.setEjemplaresRestantes(ejemplaresRestantes);
 
-        System.out.println("Ingrese id del autor:");
-        libro.setAutor(new AutorService().buscarAutorPorId());
+        System.out.println("Buscar Autor...");
+        autorService.buscarAutorPorNombre();
+        libro.setAutor(autorService.buscarAutorPorId());
 
-        System.out.println("Ingrese id de la editorial:");
-        libro.setEditorial(new EditorialService().buscarEditorialPorId());
+        System.out.println("Buscar Editorial...");
+        editorialService.buscarEditorialPorNombre();
+        libro.setEditorial(editorialService.buscarEditorialPorId());
 
         boolean existe = DAO.existeLibro(libro);
         try {
             if (libro.getAutor() != null && libro.getEditorial() != null && !existe) {
                 DAO.guardar(libro);
                 System.out.println("Se cargó el libro correctamente.");
+                leer.nextLine();
             } else {
                 System.out.println("No se pudo cargar el libro.");
                 System.out.println("Por favor, verifique los datos e intente nuevamente.");
@@ -248,13 +255,15 @@ public class LibroService {
                             break;
 
                         case 6:
-                            System.out.println("Ingrese el nuevo id del autor:");
-                            libro.setAutor(new AutorService().buscarAutorPorId());
+                            System.out.println("Buscar Autor...");
+                            autorService.buscarAutorPorNombre();
+                            libro.setAutor(autorService.buscarAutorPorId());
                             break;
 
                         case 7:
-                            System.out.println("Ingrese el nuevo id de la editorial:");
-                            libro.setEditorial(new EditorialService().buscarEditorialPorId());
+                            System.out.println("Buscar editorial...");
+                            editorialService.buscarEditorialPorNombre();
+                            libro.setEditorial(editorialService.buscarEditorialPorId());
                             break;
                         case 8:
                             boolean existe = DAO.existeLibro(libro);

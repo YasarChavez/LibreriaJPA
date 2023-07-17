@@ -65,7 +65,9 @@ public class LibroDAO extends DAO<Libro> {
         try {
             List<Libro> libros = em.createQuery("SELECT l FROM Libro l")
                     .getResultList();
-            if (libros != null) {
+            if (libros.isEmpty()) {
+                System.out.println("No hay libros");
+            }else {
                 for (Libro libro : libros) {
                     System.out.println(libro);
                 }

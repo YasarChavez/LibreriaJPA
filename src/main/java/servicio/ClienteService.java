@@ -27,25 +27,24 @@ public class ClienteService {
                     leer.nextLine(); // Limpiar el buffer del scanner
                 }
             }
-            System.out.println("Ingrese el nombre del cliente");
-            cliente.setNombre(leer.next());
-
-            System.out.println("Ingrese el apellido del cliente");
-            cliente.setApellido(leer.next());
-
-            System.out.println("Ingrese el telefono del cliente");
-            cliente.setTelefono(leer.next());
-
             boolean existe = DAO.existeCliente(cliente);
-            if (!existe) {
-                DAO.guardar(cliente);
-                System.out.println("Cliente creado");
-            } else {
-                System.out.println("Error al ingresar los datos");
-                if (existe) {
-                    System.out.println("Ya existe el Cliente");
-                }
+            if (existe) {
+                System.out.println("Ya existe un Cliente asociado a ese documento!");
                 crearCliente();
+            }else {
+                System.out.println("Ingrese el nombre del cliente");
+                cliente.setNombre(leer.next());
+
+                System.out.println("Ingrese el apellido del cliente");
+                cliente.setApellido(leer.next());
+
+                System.out.println("Ingrese el telefono del cliente");
+                cliente.setTelefono(leer.next());
+
+                if (!existe) {
+                    DAO.guardar(cliente);
+                    System.out.println("Cliente creado");
+                }
             }
         } catch (
                 Exception e) {

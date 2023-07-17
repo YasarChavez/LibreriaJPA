@@ -1,13 +1,12 @@
 package entidad;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-//@Table (name = "editorial")
-public class Editorial implements Serializable {
+@Table (name = "editorial")
+public class Editorial{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "nombre")
     private String nombre;

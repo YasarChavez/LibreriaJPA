@@ -1,13 +1,13 @@
 package entidad;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class Prestamo implements Serializable {
+@Table(name = "prestamo")
+public class Prestamo{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
     private LocalDate fechaPrestamo;

@@ -33,20 +33,19 @@ public class AutorService {
         }
     }
 
-    public Autor buscarAutorPorNombre() {
+    public void buscarAutorPorNombre() {
         try {
-            System.out.println("Ingrese el nombre del autor que desea buscar:");
+            System.out.println("Ingrese el nombre del autor:");
             String nombre = leer.next();
-            return DAO.buscarPorNombre(nombre);
+            DAO.buscarPorNombre(nombre);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
     public Autor buscarAutorPorId() {
         try {
-            System.out.println("Ingrese el id del autor que desea buscar:");
+            System.out.println("Ingrese el id del autor:");
             int l = leer.nextInt();
             return DAO.buscarPorId(l);
         } catch (Exception e) {

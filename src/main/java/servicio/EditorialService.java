@@ -43,7 +43,7 @@ public class EditorialService {
 
     public Editorial buscarEditorialPorId() {
         try {
-            System.out.println("Ingrese el id de la editorial que desea buscar:");
+            System.out.println("Ingrese el id de la editorial:");
             int id = leer.nextInt();
             return DAO.buscarPorId(id);
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class EditorialService {
 
     public void buscarEditorialPorNombre() {
         try {
-            System.out.println("Ingrese el nombre de la editorial que desea buscar:");
+            System.out.println("Ingrese el nombre de la editorial:");
             String nombre = leer.next();
             DAO.buscarPorNombre(nombre);
         } catch (Exception e) {

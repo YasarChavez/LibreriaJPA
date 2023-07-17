@@ -5,7 +5,7 @@ import servicio.*;
 import java.util.Scanner;
 
 public class Menu {
-    public static void menu() {
+    public static void menu() throws InterruptedException {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
         AutorService autorService = new AutorService();
         EditorialService editorialService = new EditorialService();
@@ -148,7 +148,7 @@ public class Menu {
         } while (opcion != 0);
     }
 
-    private static void gestionLibros(LibroService libroService, Scanner leer) {
+    private static void gestionLibros(LibroService libroService, Scanner leer) throws InterruptedException {
         int opcion = -1;
         do {
             System.out.println();

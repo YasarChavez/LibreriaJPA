@@ -21,24 +21,24 @@ public class AutorDAO extends DAO<Autor> {
     }
 
 
-    public Autor buscarPorNombre(String nombre) {
+    public void buscarPorNombre(String nombre) {
         conectar();
-        Autor autor;
+        List<Autor> autor;
         try {
-            autor = (Autor) em.createQuery("SELECT a FROM Autor a where a.nombre = :nombre")
-                    .setParameter("nombre", nombre)
-                    .getSingleResult();
-            if (autor != null) {
-                System.out.println(autor);
+            autor = em.createQuery("SELECT a FROM Autor a where a.nombre LIKE :nombre")
+                    .setParameter("nombre", "%"+nombre+"%")
+                    .getResultList();
+            if (autor.isEmpty()) {
+                System.out.println("No hay autores");
             } else {
-                System.out.println("No se encontro el autor");
+                for (Autor aut : autor) {
+                    System.out.println(aut);
+                }
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            return null;
         }
         desconectar();
-        return autor;
     }
 
     public Autor buscarPorId(int l) {
@@ -109,8 +109,8 @@ public class AutorDAO extends DAO<Autor> {
             } else {
                 System.out.println("No se encontro el autor");
             }
-        }catch (Exception  e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         desconectar();
     }
@@ -127,8 +127,8 @@ public class AutorDAO extends DAO<Autor> {
             } else {
                 System.out.println("No se encontro el autor");
             }
-        }catch (Exception  e){
-            System.out.println("Error: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         desconectar();
     }

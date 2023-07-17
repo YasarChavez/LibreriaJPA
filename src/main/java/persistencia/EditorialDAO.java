@@ -26,12 +26,12 @@ public class EditorialDAO extends DAO<Editorial> {
         List<Editorial> editoriales;
         try {
             editoriales  = em.createQuery("SELECT e FROM Editorial e").getResultList();
-            if (editoriales != null) {
+            if (editoriales.isEmpty()) {
+                System.out.println("No se encontraron resultados");
+            } else {
                 for (Editorial editorial : editoriales) {
                     System.out.println(editorial);
                 }
-            } else {
-                System.out.println("No se encontraron resultados");
             }
         }catch (Exception e) {
             System.out.println("Error en la busqueda: " + e.getMessage());
@@ -76,7 +76,7 @@ public class EditorialDAO extends DAO<Editorial> {
         List<Editorial> editoriales;
         try {
             editoriales = em.createQuery("SELECT e FROM Editorial e WHERE e.nombre LIKE :nombre")
-                    .setParameter("nombre", nombre)
+                    .setParameter("nombre", "%"+nombre+"%")
                     .getResultList();
             if (editoriales.size() > 0) {
                 for (Editorial e : editoriales) {

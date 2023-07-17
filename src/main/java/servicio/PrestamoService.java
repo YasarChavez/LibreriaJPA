@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class PrestamoService {
     private final PrestamoDAO DAO;
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
+    ClienteService clienteService = new ClienteService();
+    LibroService libroService = new LibroService();
 
     public PrestamoService() {
         this.DAO = new PrestamoDAO();
@@ -22,7 +24,7 @@ public class PrestamoService {
         Libro libro;
         while (true) {
             try {
-                libro = (new LibroService()).buscarLibroPorISBN();
+                libro = (libroService.buscarLibroPorISBN());
                 if (libro != null) {
                     System.out.println("Libro encontrado!");
                     break;
@@ -41,7 +43,7 @@ public class PrestamoService {
         Cliente cliente;
         while (true) {
             try {
-                cliente = (new ClienteService()).buscarClientePorDocumento();
+                cliente = (clienteService.buscarClientePorDocumento());
                 if (cliente != null) {
                     System.out.println("Cliente encontrado!");
                     break;

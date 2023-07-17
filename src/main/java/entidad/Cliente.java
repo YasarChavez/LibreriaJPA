@@ -1,12 +1,13 @@
 package entidad;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 @Entity
-public class Cliente implements Serializable {
+@Table(name = "cliente")
+public class Cliente{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
     private long documento;
