@@ -70,8 +70,8 @@ public class Prestamo{
                 "id=" + id +
                 ", fechaPrestamo=" + fechaPrestamo +
                 ", fechaDevolucion=" + fechaDevolucion +
-                ", libro=" + libro +
-                ", cliente=" + cliente +
+                ", libro=" + libro.getTitulo() +
+                ", cliente=" + cliente.getNombre() + ", dni=" + cliente.getDocumento() +
                 '}';
     }
 

@@ -111,8 +111,8 @@ public class Libro{
                 ", ejemplaresPrestados=" + ejemplaresPrestados +
                 ", ejemplaresRestantes=" + ejemplaresRestantes +
                 ", alta=" + alta +
-                ", autor=" + autor +
-                ", editorial=" + editorial +
+                ", autor=" + autor.getNombre() +
+                ", editorial=" + editorial.getNombre() +
                 '}';
     }
 
