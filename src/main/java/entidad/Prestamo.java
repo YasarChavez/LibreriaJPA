@@ -74,4 +74,6 @@ public class Prestamo{
                 ", cliente=" + cliente +
                 '}';
     }
+
+
 }

@@ -248,6 +248,7 @@ public class Menu {
             System.out.println("1. Agregar Prestamo");
             System.out.println("2. Listar Prestamos por Cliente");
             System.out.println("3. Devolver Prestamo");
+            System.out.println("4. Listar Prestamos");
             System.out.println("0. Volver al Menú Principal");
             try {
                 opcion = leer.nextInt();
@@ -264,6 +265,9 @@ public class Menu {
                     break;
                 case 3:
                     prestamoService.devolverPrestamo();
+                    break;
+                case 4:
+                    prestamoService.listarTodosLosPrestamos();
                     break;
                 case 0:
                     System.out.println("Volviendo al Menú Principal...");

@@ -55,4 +55,21 @@ public class PrestamoDAO extends DAO<Prestamo> {
         }
         return prestamo;
     }
+
+    public void listarTodosLosPrestamos() {
+        conectar();
+        List<Prestamo> prestamos;
+        try {
+            prestamos = em.createQuery("SELECT p FROM Prestamo p").getResultList();
+            if (prestamos.isEmpty()) {
+                System.out.println("No hay prestamos registrados");
+            }else {
+                for (Prestamo p : prestamos) {
+                    System.out.println(p);
+                }
+            }
+        }catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }

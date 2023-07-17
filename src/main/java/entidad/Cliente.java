@@ -65,4 +65,5 @@ public class Cliente{
                 ", telefono='" + telefono + '\'' +
                 '}';
     }
+
 }
