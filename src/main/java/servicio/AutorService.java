@@ -4,6 +4,7 @@ import entidad.Autor;
 import persistencia.AutorDAO;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class AutorService {
@@ -33,13 +34,14 @@ public class AutorService {
         }
     }
 
-    public void buscarAutorPorNombre() {
+    public List buscarAutorPorNombre() {
         try {
             System.out.println("Ingrese el nombre del autor:");
             String nombre = leer.next();
-            DAO.buscarPorNombre(nombre);
+            return DAO.buscarPorNombre(nombre);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+            return null;
         }
     }
 

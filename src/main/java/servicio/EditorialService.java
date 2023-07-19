@@ -1,9 +1,11 @@
 package servicio;
 
+import entidad.Autor;
 import entidad.Editorial;
 import persistencia.EditorialDAO;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class EditorialService {
@@ -52,14 +54,15 @@ public class EditorialService {
         }
     }
 
-    public void buscarEditorialPorNombre() {
+    public List<Editorial> buscarEditorialPorNombre() {
         try {
             System.out.println("Ingrese el nombre de la editorial:");
             String nombre = leer.next();
-            DAO.buscarPorNombre(nombre);
+            return DAO.buscarPorNombre(nombre);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return null;
     }
 
     public void modificarEditorialPorId() {

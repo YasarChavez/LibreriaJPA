@@ -71,7 +71,7 @@ public class EditorialDAO extends DAO<Editorial> {
         return editorialExiste != null;
     }
 
-    public void buscarPorNombre(String nombre) {
+    public List buscarPorNombre(String nombre) {
         conectar();
         List<Editorial> editoriales;
         try {
@@ -82,14 +82,15 @@ public class EditorialDAO extends DAO<Editorial> {
                 for (Editorial e : editoriales) {
                     System.out.println(e);
                 }
+                return editoriales;
             } else {
-                System.out.println("No se encontraron resultados");
+                System.out.println("No se encontraron editoriales");
             }
         } catch (Exception e) {
             System.out.println("Error en la busqueda: " + e.getMessage());
-            return;
         }
         desconectar();
+        return null;
     }
 
     public void altaBajaEditorial(Integer id) {

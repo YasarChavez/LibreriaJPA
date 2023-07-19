@@ -21,7 +21,7 @@ public class AutorDAO extends DAO<Autor> {
     }
 
 
-    public void buscarPorNombre(String nombre) {
+    public List buscarPorNombre(String nombre) {
         conectar();
         List<Autor> autor;
         try {
@@ -29,16 +29,18 @@ public class AutorDAO extends DAO<Autor> {
                     .setParameter("nombre", "%"+nombre+"%")
                     .getResultList();
             if (autor.isEmpty()) {
-                System.out.println("No hay autores");
+                System.out.println("No se encontraron autores.");
             } else {
                 for (Autor aut : autor) {
                     System.out.println(aut);
                 }
+                return autor;
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         desconectar();
+        return null;
     }
 
     public Autor buscarPorId(int l) {
