@@ -11,7 +11,7 @@ public class LibroService {
 
     private final LibroDAO DAO;
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
-    AutorService  autorService = new AutorService();
+    AutorService autorService = new AutorService();
     EditorialService editorialService = new EditorialService();
 
     public LibroService() {
@@ -108,15 +108,64 @@ public class LibroService {
         }
         libro.setEjemplaresRestantes(ejemplaresRestantes);
 
-        System.out.println("Buscar Autor...");
-        autorService.buscarAutorPorNombre();
-        libro.setAutor(autorService.buscarAutorPorId());
+        while (true) {
+            System.out.println("Buscar Autor...");
+            autorService.buscarAutorPorNombre();
+            System.out.println("Ingrese 0 si no se encontró Autor o un *Espacio* para continuar.");
+            String id;
+            int id2 = -1;
+            while (true) {
 
-        System.out.println("Buscar Editorial...");
-        editorialService.buscarEditorialPorNombre();
-        libro.setEditorial(editorialService.buscarEditorialPorId());
+                try {
+                    id = leer.next();
+                    if (id.equals(" ")) {
+                        break;
+                    }
+                    id2 = Integer.parseInt(id);
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Error: Debes ingresar un numero entero para el ID.");
+                    leer.nextLine(); // Limpiar el buffer del scanner
+                }
+            }
+            if (id2 == 0) {
+                leer.nextLine(); // Limpiar el buffer del scanner
+            } else {
+                libro.setAutor(autorService.buscarAutorPorId());
+                break;
+            }
+        }
+
+        while (true) {
+            System.out.println("Buscar Editorial...");
+            editorialService.buscarEditorialPorNombre();
+            System.out.println("Ingrese 0 si no se encontró Editorial o un *Espacio* para continuar.");
+            String id;
+            int id2 = -1;
+            while (true) {
+                try {
+                    id = leer.next();
+                    if (id.equals(" ")) {
+                        break;
+                    }
+                    id2 = Integer.parseInt(id);
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Error: Debes ingresar un numero entero para el ID.");
+                    leer.nextLine(); // Limpiar el buffer del scanner
+                }
+            }
+            if (id2 == 0) {
+                leer.nextLine(); // Limpiar el buffer del scanner
+            } else {
+                libro.setEditorial(editorialService.buscarEditorialPorId());
+                break;
+            }
+        }
+
 
         boolean existe = DAO.existeLibro(libro);
+
         try {
             if (libro.getAutor() != null && libro.getEditorial() != null && !existe) {
                 DAO.guardar(libro);
@@ -180,7 +229,7 @@ public class LibroService {
             }
             Libro libro = DAO.buscarPorISBN(isbn);
             if (libro != null) {
-                int menu= -1;
+                int menu = -1;
                 do {
                     System.out.println("1. Modificar título");
                     System.out.println("2. Modificar año");
